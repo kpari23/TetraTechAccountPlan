@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tetra Tech Live Intelligence Feed – Planview</title>
 <style>
-  :root { --red:#E2251B; --black:#1A1A1A; --gray:#515151; --light:#F7F8FA; --border:#E2E6EA; --steel:#6A94AA; }
+  :root{--red:#E2251B;--black:#1A1A1A;--gray:#515151;--light:#F7F8FA;--border:#E2E6EA;--steel:#6A94AA;}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:Arial,sans-serif;font-size:14px;color:var(--black);background:#F0F2F5}
   .page{max-width:1100px;margin:0 auto;padding:32px 24px}
   .cover{background:var(--black);color:white;border-radius:10px;padding:36px 48px;margin-bottom:28px}
   .cover-eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-bottom:10px}
-  .cover-title{font-size:28px;font-weight:900;color:white;margin-bottom:6px}
+  .cover-title{font-size:28px;font-weight:900;margin-bottom:6px}
   .cover-title span{color:var(--red)}
   .cover-sub{font-size:14px;color:#bbb}
   .cover-nav{margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
@@ -31,12 +31,9 @@
   .news-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
   .news-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
   .news-source{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:3px 8px;border-radius:3px}
-  .src-financial{background:#EAF3DE;color:#3B6D11}
-  .src-contract{background:#D9E7ED;color:#185FA5}
-  .src-leadership{background:#EEEDFE;color:#3C3489}
-  .src-industry{background:#FAEEDA;color:#854F0B}
-  .src-risk{background:#FCEBEB;color:#A32D2D}
-  .src-general{background:#F1EFE8;color:#444}
+  .src-financial{background:#EAF3DE;color:#3B6D11}.src-contract{background:#D9E7ED;color:#185FA5}
+  .src-leadership{background:#EEEDFE;color:#3C3489}.src-industry{background:#FAEEDA;color:#854F0B}
+  .src-risk{background:#FCEBEB;color:#A32D2D}.src-general{background:#F1EFE8;color:#444}
   .news-date{font-size:11px;color:#aaa;white-space:nowrap}
   .news-title{font-size:14px;font-weight:700;line-height:1.45}
   .news-summary{font-size:12.5px;color:var(--gray);line-height:1.6}
@@ -75,7 +72,6 @@
       <a href="index.html" class="back-btn">&larr; Back to Account Plan</a>
     </div>
   </div>
-
   <div class="layout">
     <div>
       <div class="filter-bar">
@@ -88,35 +84,22 @@
         <button class="filter-btn" onclick="setFilter('risk',this)">Risk</button>
         <button class="refresh-btn" onclick="loadFeeds()">&#8635; Refresh</button>
       </div>
-      <div id="feed-container">
-        <div class="feed-status"><div class="spinner"></div><h3>Loading latest Tetra Tech intelligence...</h3><p>Fetching live headlines from Google News.</p></div>
-      </div>
+      <div id="feed-container"><div class="feed-status"><div class="spinner"></div><h3>Loading latest Tetra Tech intelligence...</h3><p>Fetching live headlines.</p></div></div>
       <div class="last-updated" id="last-updated"></div>
     </div>
-
     <div class="sidebar">
       <div class="sidebar-card">
         <div class="sidebar-title">Topic Tracker</div>
-        <div class="topic-item" onclick="setFilter('financial',null)">
-          <div class="topic-dot" style="background:#3B6D11"></div><span class="topic-name">Earnings &amp; Finance</span><span class="topic-count" id="c-financial">0</span>
-        </div>
-        <div class="topic-item" onclick="setFilter('contract',null)">
-          <div class="topic-dot" style="background:#185FA5"></div><span class="topic-name">Contracts &amp; Awards</span><span class="topic-count" id="c-contract">0</span>
-        </div>
-        <div class="topic-item" onclick="setFilter('leadership',null)">
-          <div class="topic-dot" style="background:#3C3489"></div><span class="topic-name">Leadership</span><span class="topic-count" id="c-leadership">0</span>
-        </div>
-        <div class="topic-item" onclick="setFilter('industry',null)">
-          <div class="topic-dot" style="background:#854F0B"></div><span class="topic-name">Industry &amp; Market</span><span class="topic-count" id="c-industry">0</span>
-        </div>
-        <div class="topic-item" onclick="setFilter('risk',null)">
-          <div class="topic-dot" style="background:#A32D2D"></div><span class="topic-name">Risk &amp; Policy</span><span class="topic-count" id="c-risk">0</span>
-        </div>
+        <div class="topic-item" onclick="setFilter('financial',null)"><div class="topic-dot" style="background:#3B6D11"></div><span class="topic-name">Earnings &amp; Finance</span><span class="topic-count" id="c-financial">0</span></div>
+        <div class="topic-item" onclick="setFilter('contract',null)"><div class="topic-dot" style="background:#185FA5"></div><span class="topic-name">Contracts &amp; Awards</span><span class="topic-count" id="c-contract">0</span></div>
+        <div class="topic-item" onclick="setFilter('leadership',null)"><div class="topic-dot" style="background:#3C3489"></div><span class="topic-name">Leadership</span><span class="topic-count" id="c-leadership">0</span></div>
+        <div class="topic-item" onclick="setFilter('industry',null)"><div class="topic-dot" style="background:#854F0B"></div><span class="topic-name">Industry &amp; Market</span><span class="topic-count" id="c-industry">0</span></div>
+        <div class="topic-item" onclick="setFilter('risk',null)"><div class="topic-dot" style="background:#A32D2D"></div><span class="topic-name">Risk &amp; Policy</span><span class="topic-count" id="c-risk">0</span></div>
       </div>
       <div class="sidebar-card">
         <div class="sidebar-title">Key Watchwords</div>
         <div class="watchword-list">
-          <span class="watchword">Roger Argus</span><span class="watchword">USAID</span><span class="watchword">DOGE</span><span class="watchword">federal contracts</span><span class="watchword">digital practice</span><span class="watchword">SAGE Group</span><span class="watchword">Halvik</span><span class="watchword">water infrastructure</span><span class="watchword">backlog</span><span class="watchword">Army Corps</span><span class="watchword">TTEK</span><span class="watchword">sustainability</span><span class="watchword">earnings</span><span class="watchword">acquisition</span>
+          <span class="watchword">Roger Argus</span><span class="watchword">USAID</span><span class="watchword">DOGE</span><span class="watchword">federal contracts</span><span class="watchword">digital practice</span><span class="watchword">SAGE Group</span><span class="watchword">Halvik</span><span class="watchword">water infrastructure</span><span class="watchword">backlog</span><span class="watchword">Army Corps</span><span class="watchword">TTEK</span><span class="watchword">AgilePlace</span><span class="watchword">earnings</span><span class="watchword">acquisition</span>
         </div>
       </div>
       <div class="sidebar-card">
@@ -130,67 +113,69 @@
     </div>
   </div>
 </div>
-
 <script>
-const PROXY='https://api.allorigins.win/get?url=';
-const QUERIES=[
+// Use multiple CORS proxies with fallback
+const PROXIES = [
+  'https://api.allorigins.win/get?url=',
+  'https://corsproxy.io/?url=',
+  'https://cors-anywhere.herokuapp.com/'
+];
+
+const QUERIES = [
   'Tetra+Tech+TTEK',
   'Tetra+Tech+earnings+OR+contract+OR+acquisition',
   '"Tetra+Tech"+federal+OR+USAID+OR+government',
   '"Tetra+Tech"+water+OR+digital+OR+sustainability'
 ];
-let allArticles=[];
-let activeFilter='all';
+
+let allArticles=[], activeFilter='all';
 
 function categorize(t){
   t=t.toLowerCase();
   if(/earnings|revenue|profit|quarterly|fiscal|guidance|backlog|ebitda|eps|investor|stock|analyst/.test(t))return'financial';
-  if(/contract|award|corps|afcec|usace|procure|federal|government|agency|bid|task order/.test(t))return'contract';
+  if(/contract|award|corps|afcec|usace|procure|federal|government|agency|bid/.test(t))return'contract';
   if(/ceo|president|appoint|leadership|executive|hire|resign|director|argus|batrack|weiss/.test(t))return'leadership';
   if(/water|infrastructure|environment|sustainab|digital|automat|sage|halvik|acqui|merger/.test(t))return'industry';
-  if(/risk|doge|usaid|regulat|policy|tariff|threat|concern|cut|cancel|terminat/.test(t))return'risk';
+  if(/risk|doge|usaid|regulat|policy|tariff|threat|cut|cancel|terminat/.test(t))return'risk';
   return'general';
 }
-
-const CAT={
-  financial:['Financial','src-financial'],
-  contract:['Contract Award','src-contract'],
-  leadership:['Leadership','src-leadership'],
-  industry:['Industry','src-industry'],
-  risk:['Risk / Policy','src-risk'],
-  general:['General','src-general']
-};
+const CAT={financial:['Financial','src-financial'],contract:['Contract Award','src-contract'],leadership:['Leadership','src-leadership'],industry:['Industry','src-industry'],risk:['Risk / Policy','src-risk'],general:['General','src-general']};
 
 function timeAgo(d){
   d=new Date(d);if(isNaN(d))return'';
   const s=Math.floor((Date.now()-d)/1000);
-  if(s<60)return'just now';
-  if(s<3600)return Math.floor(s/60)+'m ago';
-  if(s<86400)return Math.floor(s/3600)+'h ago';
-  if(s<604800)return Math.floor(s/86400)+'d ago';
+  if(s<60)return'just now';if(s<3600)return Math.floor(s/60)+'m ago';
+  if(s<86400)return Math.floor(s/3600)+'h ago';if(s<604800)return Math.floor(s/86400)+'d ago';
   return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
 }
 
 function parseRSS(xml){
-  const doc=new DOMParser().parseFromString(xml,'text/xml');
-  return Array.from(doc.querySelectorAll('item')).map(item=>{
-    const title=(item.querySelector('title')?.textContent||'').trim();
-    const link=item.querySelector('link')?.textContent||item.querySelector('guid')?.textContent||'#';
-    const pubDate=item.querySelector('pubDate')?.textContent||'';
-    const tmp=document.createElement('div');
-    tmp.innerHTML=item.querySelector('description')?.textContent||'';
-    const summary=tmp.textContent.replace(/\s+/g,' ').trim().slice(0,180);
-    return{title,link,pubDate,summary,category:categorize(title+' '+summary)};
-  });
+  try{
+    const doc=new DOMParser().parseFromString(xml,'text/xml');
+    return Array.from(doc.querySelectorAll('item')).map(item=>{
+      const title=(item.querySelector('title')?.textContent||'').trim();
+      const link=item.querySelector('link')?.textContent||item.querySelector('guid')?.textContent||'#';
+      const pubDate=item.querySelector('pubDate')?.textContent||'';
+      const tmp=document.createElement('div');
+      tmp.innerHTML=item.querySelector('description')?.textContent||'';
+      const summary=tmp.textContent.replace(/\s+/g,' ').trim().slice(0,180);
+      return{title,link,pubDate,summary,category:categorize(title+' '+summary)};
+    });
+  }catch(e){return[];}
 }
 
-async function fetchQ(q){
-  const rss=`https://news.google.com/rss/search?q=${q}&hl=en-US&gl=US&ceid=US:en`;
+async function tryFetch(rssUrl){
+  // Try allorigins first (returns JSON with .contents)
   try{
-    const r=await fetch(PROXY+encodeURIComponent(rss),{signal:AbortSignal.timeout(12000)});
-    const j=await r.json();
-    return j.contents?parseRSS(j.contents):[];
-  }catch(e){return[];}
+    const r=await fetch('https://api.allorigins.win/get?url='+encodeURIComponent(rssUrl),{signal:AbortSignal.timeout(10000)});
+    if(r.ok){const j=await r.json();if(j&&j.contents&&j.contents.includes('<item>')){return parseRSS(j.contents);}}
+  }catch(e){}
+  // Try corsproxy.io (returns raw content)
+  try{
+    const r=await fetch('https://corsproxy.io/?url='+encodeURIComponent(rssUrl),{signal:AbortSignal.timeout(10000)});
+    if(r.ok){const t=await r.text();if(t.includes('<item>')){return parseRSS(t);}}
+  }catch(e){}
+  return[];
 }
 
 function dedup(arr){
@@ -201,10 +186,7 @@ function dedup(arr){
 function renderFeed(){
   const el=document.getElementById('feed-container');
   const items=activeFilter==='all'?allArticles:allArticles.filter(a=>a.category===activeFilter);
-  if(!items.length){
-    el.innerHTML='<div class="feed-status"><div style="font-size:32px;margin-bottom:12px">📭</div><h3>No articles for this filter</h3><p>Try a different category or click Refresh.</p></div>';
-    return;
-  }
+  if(!items.length){el.innerHTML='<div class="feed-status"><div style="font-size:32px;margin-bottom:12px">📭</div><h3>No articles for this filter</h3><p>Try a different category or click Refresh.</p></div>';return;}
   el.innerHTML='<div class="feed-grid">'+items.map(a=>{
     const[label,cls]=CAT[a.category]||CAT.general;
     return`<div class="news-card"><div class="news-card-top"><span class="news-source ${cls}">${label}</span><span class="news-date">${timeAgo(a.pubDate)}</span></div><div class="news-title">${a.title}</div>${a.summary?`<div class="news-summary">${a.summary}</div>`:''}<a class="news-link" href="${a.link}" target="_blank" rel="noopener">Read full article &rarr;</a></div>`;
@@ -228,17 +210,16 @@ function setFilter(cat,btn){
 async function loadFeeds(){
   document.getElementById('feed-container').innerHTML='<div class="feed-status"><div class="spinner"></div><h3>Loading latest Tetra Tech intelligence...</h3><p>Fetching live headlines from Google News.</p></div>';
   document.getElementById('last-updated').textContent='';
-  const results=await Promise.all(QUERIES.map(fetchQ));
+  const urls=QUERIES.map(q=>`https://news.google.com/rss/search?q=${q}&hl=en-US&gl=US&ceid=US:en`);
+  const results=await Promise.all(urls.map(tryFetch));
   allArticles=dedup(results.flat().sort((a,b)=>new Date(b.pubDate)-new Date(a.pubDate)));
   if(!allArticles.length){
-    document.getElementById('feed-container').innerHTML='<div class="feed-status"><div style="font-size:32px;margin-bottom:12px">⚠️</div><h3>Live feed temporarily unavailable</h3><p>The news proxy may be down. Use the Quick Links in the sidebar to access Tetra Tech news directly.</p></div>';
+    document.getElementById('feed-container').innerHTML='<div class="feed-status"><div style="font-size:32px;margin-bottom:12px">⚠️</div><h3>Live feed temporarily unavailable</h3><p>CORS proxies may be rate-limited right now. Try refreshing in a moment, or use the Quick Links in the sidebar to access Tetra Tech news directly.</p></div>';
     return;
   }
-  updateCounts();
-  renderFeed();
+  updateCounts();renderFeed();
   document.getElementById('last-updated').textContent='Last updated: '+new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})+'  —  '+allArticles.length+' articles loaded';
 }
-
 loadFeeds();
 setInterval(loadFeeds,600000);
 </script>
