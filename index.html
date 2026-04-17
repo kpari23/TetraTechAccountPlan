@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nike Org Chart — Lead Overlay</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#fff;--bg2:#f7f6f3;--bg3:#f1efe8;--tp:#1a1a18;--ts:#5f5e5a;--tt:#88877f;--br:rgba(0,0,0,0.12);--brm:rgba(0,0,0,0.2);--lead-bg:#FFF8F5;--lead-border:#FA5400;--lead-vp:#7c3aed;--lead-dir:#185FA5;--lead-mgr:#0F6E56}
+@media(prefers-color-scheme:dark){:root{--bg:#1c1c1a;--bg2:#242422;--bg3:#2c2c2a;--tp:#e8e6df;--ts:#9c9a92;--tt:#6b6963;--br:rgba(255,255,255,0.1);--brm:rgba(255,255,255,0.18);--lead-bg:#2a1a10;--lead-border:#FA5400}}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--tp);padding:2rem 1.5rem 3rem;max-width:1200px;margin:0 auto;line-height:1.4}
+h1{font-size:17px;font-weight:500;margin-bottom:3px}
+.sub{font-size:12px;color:var(--tt);margin-bottom:1rem;padding-bottom:.75rem;border-bottom:.5px solid var(--br)}
+.legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1rem;font-size:11px;color:var(--ts)}
+.leg{display:flex;align-items:center;gap:5px}
+.ld{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.section-label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--tt);margin:16px 0 6px;padding-top:4px}
+.divider{height:.5px;background:var(--br);margin:14px 0 10px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.col{flex:1;min-width:150px}
+.ecard{border:.5px solid var(--br);border-radius:8px;padding:7px 10px;background:var(--bg);margin-bottom:6px}
+.ecard .nm{font-size:13px;font-weight:500}
+.ecard .rl{font-size:11px;color:var(--ts);margin-top:1px}
+.badge{font-size:10px;font-weight:500;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:3px}
+.c-ceo{border-color:#534AB7}.c-ceo .badge{background:#EEEDFE;color:#3C3489}
+.c-ops{border-color:#0F6E56}.c-ops .badge{background:#E1F5EE;color:#085041}
+.c-fin{border-color:#185FA5}.c-fin .badge{background:#E6F1FB;color:#0C447C}
+.c-idp{border-color:#854F0B}.c-idp .badge{background:#FAEEDA;color:#633806}
+.c-mkt{border-color:#993C1D}.c-mkt .badge{background:#FAECE7;color:#712B13}
+.c-ppl{border-color:#993556}.c-ppl .badge{background:#FBEAF0;color:#72243E}
+.c-leg{border-color:#5F5E5A}.c-leg .badge{background:#F1EFE8;color:#444441}
+.c-geo{border-color:#3B6D11}.c-geo .badge{background:#EAF3DE;color:#27500A}
+.c-brand{border-color:#993556}.c-brand .badge{background:#FBEAF0;color:#72243E}
+@media(prefers-color-scheme:dark){
+  .c-ceo{border-color:#7F77DD}.c-ceo .badge{background:#26215C;color:#AFA9EC}
+  .c-ops{border-color:#1D9E75}.c-ops .badge{background:#04342C;color:#5DCAA5}
+  .c-fin{border-color:#378ADD}.c-fin .badge{background:#042C53;color:#85B7EB}
+  .c-idp{border-color:#EF9F27}.c-idp .badge{background:#412402;color:#EF9F27}
+  .c-mkt{border-color:#D85A30}.c-mkt .badge{background:#4A1B0C;color:#F0997B}
+  .c-ppl{border-color:#D4537E}.c-ppl .badge{background:#4B1528;color:#ED93B1}
+  .c-leg{border-color:#888780}.c-leg .badge{background:#2C2C2A;color:#B4B2A9}
+  .c-geo{border-color:#639922}.c-geo .badge{background:#173404;color:#97C459}
+  .c-brand{border-color:#D4537E}.c-brand .badge{background:#4B1528;color:#ED93B1}
+}
+.lcluster{background:var(--lead-bg);border:.5px solid var(--lead-border);border-radius:8px;padding:7px 9px;margin-top:4px}
+.lcluster-hdr{font-size:10px;font-weight:600;color:#FA5400;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.lcard{display:flex;align-items:flex-start;gap:6px;padding:4px 0;border-bottom:.5px solid rgba(250,84,0,0.15)}
+.lcard:last-child{border-bottom:none}
+.lcard-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.dot-vp{background:#7c3aed}
+.dot-dir{background:#185FA5}
+.dot-mgr{background:#0F6E56}
+.lcard-body{flex:1;min-width:0}
+.lcard-name{font-size:12px;font-weight:500;color:var(--tp)}
+.lcard-title{font-size:10.5px;color:var(--ts);line-height:1.3;margin-top:1px}
+.lcard-email{font-size:10px;color:#FA5400;margin-top:1px}
+.note{font-size:11px;color:var(--tt);font-style:italic;margin-top:14px;padding:6px 10px;border-left:2px solid var(--brm);background:var(--bg2);border-radius:0 6px 6px 0}
+.ceo-wrap{display:flex;flex-direction:column;align-items:center;margin-bottom:4px}
+.ceo-card{max-width:220px;border-width:1px!important}
+.board-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:4px}
+.board-row .ecard{max-width:160px;min-width:130px;flex:none}
+</style>
+</head>
+<body>
+
+<h1>Nike, Inc. — Org Chart with Lead Overlay</h1>
+<div class="sub">64 contacts from Sales Navigator mapped to org nodes · April 2026</div>
+
+<div class="legend">
+  <div class="leg"><div class="ld" style="background:#534AB7"></div>CEO/Board</div>
+  <div class="leg"><div class="ld" style="background:#0F6E56"></div>Ops &amp; Tech</div>
+  <div class="leg"><div class="ld" style="background:#185FA5"></div>Finance/Strategy</div>
+  <div class="leg"><div class="ld" style="background:#854F0B"></div>Innovation/Design</div>
+  <div class="leg"><div class="ld" style="background:#993C1D"></div>Marketing</div>
+  <div class="leg"><div class="ld" style="background:#993556"></div>People/Legal/Brands</div>
+  <div class="leg"><div class="ld" style="background:#3B6D11"></div>Geographies</div>
+  <div class="leg"><div class="ld" style="background:#FA5400;border-radius:2px"></div>Your leads</div>
+  <div class="leg"><div class="ld dot-vp"></div>VP</div>
+  <div class="leg"><div class="ld dot-dir"></div>Director</div>
+  <div class="leg"><div class="ld dot-mgr"></div>Manager/Other</div>
+</div>
+
+<!-- CEO -->
+<div class="ceo-wrap">
+  <div class="ecard ceo-card c-ceo" style="text-align:center">
+    <div class="nm">Elliott Hill</div><div class="rl">President &amp; CEO</div>
+    <span class="badge">CEO since Oct 2024</span>
+  </div>
+</div>
+<div style="width:1px;height:10px;background:var(--br);margin:0 auto 4px"></div>
+<div class="board-row">
+  <div class="ecard c-ceo"><div class="nm">Mark Parker</div><div class="rl">Executive Chairman</div><span class="badge">Board</span></div>
+  <div class="ecard c-ceo"><div class="nm">Philip H. Knight</div><div class="rl">Chairman Emeritus</div><span class="badge">Founder</span></div>
+</div>
+
+<div class="divider"></div>
+<div class="section-label">Operations &amp; Technology — COO Venky Alagirisamy</div>
+<div class="row">
+  <div class="col">
+    <div class="ecard c-ops"><div class="nm">Venky Alagirisamy</div><div class="rl">EVP, Chief Operating Officer</div><span class="badge">COO</span></div>
+    <div class="lcluster">
+      <div class="lcluster-hdr">Your leads — Supply Chain &amp; Planning</div>
+      <div class="lcard"><div class="lcard-dot dot-vp"></div><div class="lcard-body"><div class="lcard-name">Mike Overson</div><div class="lcard-title">VP, Global Central Planning, Supply &amp; Innovation</div><div class="lcard-email">moverson@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Jeff K (Katz)</div><div class="lcard-title">Global Director, Supply Chain, Transportation &amp; Procurement Strategy</div><div class="lcard-email">jeff.katz@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-vp"></div><div class="lcard-body"><div class="lcard-name">Christie Blomster</div><div class="lcard-title">VP, Strategy, Enterprise, Geographies, Marketplace, Technology &amp; Supply Chain</div><div class="lcard-email">christie.blomster@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Stacey Brinkman-Stuck</div><div class="lcard-title">Director of Resilience Portfolio and Operations</div><div class="lcard-email">stacey.brinkman@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Nazanin Rahnama</div><div class="lcard-title">Director, Portfolio and Strategy, Global Continuity &amp; Resilience</div><div class="lcard-email">nazanin.rahnama@nike.com</div></div></div>
+    </div>
+    <div class="lcluster" style="margin-top:6px">
+      <div class="lcluster-hdr">Your leads — Technology</div>
+      <div class="lcard"><div class="lcard-dot dot-vp"></div><div class="lcard-body"><div class="lcard-name">Jay Chandrashekaran</div><div class="lcard-title">Global VP, Enterprise Architecture, Tech Modernization &amp; Developer Platforms</div><div class="lcard-email">jay.chandrashekaran@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-vp"></div><div class="lcard-body"><div class="lcard-name">Ananda Shenoy</div><div class="lcard-title">VP of Technology</div><div class="lcard-email">ananda.shenoy@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-vp"></div><div class="lcard-body"><div class="lcard-name">Drew Tennenbaum</div><div class="lcard-title">VP of Technology, Geos and Marketplace Experiences</div><div class="lcard-email">drew.tennenbaum@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Varun Rao</div><div class="lcard-title">Director, Technology Strategy</div><div class="lcard-email">varun.rao@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Heather Lovell</div><div class="lcard-title">Director, Global Technology Strategy</div><div class="lcard-email">heather.lovell@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Katie Voth</div><div class="lcard-title">Sr. IT Director</div><div class="lcard-email">katie.voth@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Chip Harmon</div><div class="lcard-title">Senior Director, Technology Business &amp; Lifecycle Management</div><div class="lcard-email">chip.harmon@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Ulrike Weiler</div><div class="lcard-title">Sr. Director, Technology — Digital Employee Experience, Comms, Resilience, Legal, Workplace</div><div class="lcard-email">ulrike.weiler@nike.com</div></div></div>
+    </div>
+    <div class="lcluster" style="margin-top:6px">
+      <div class="lcluster-hdr">Your leads — Sustainability (Cimarron Nix)</div>
+      <div class="lcard"><div class="lcard-dot dot-mgr"></div><div class="lcard-body"><div class="lcard-name">Bee Animashaun</div><div class="lcard-title">Global Strategy &amp; Ops / Chief of Staff to Chief Sustainability Officer</div><div class="lcard-email">bee.animashaun@nike.com</div></div></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ecard c-ops" style="border-color:#3B6D11"><div class="nm">Enterprise Portfolio &amp; Transformation</div><div class="rl">Cross-functional under COO / Technology</div><span class="badge" style="background:#EAF3DE;color:#27500A">Portfolio Mgmt</span></div>
+    <div class="lcluster">
+      <div class="lcluster-hdr">Your leads — Portfolio &amp; Transformation</div>
+      <div class="lcard"><div class="lcard-dot dot-vp"></div><div class="lcard-body"><div class="lcard-name">Jordan Rice</div><div class="lcard-title">VP, Innovation Portfolio, Partnerships &amp; Engagement</div><div class="lcard-email">jordan.rice@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Josh Bruxer</div><div class="lcard-title">Director, Global Technology Enterprise Portfolio</div><div class="lcard-email">josh.bruxer@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Amy Fabian-Crump</div><div class="lcard-title">Sr. Director, Portfolio &amp; Program Operations &amp; Territory Technology</div><div class="lcard-email">amy.fabian-crump@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Monica Kondos</div><div class="lcard-title">Director, Strategic Portfolio &amp; Programs</div><div class="lcard-email">monica.kondos2@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Tracy Gregory</div><div class="lcard-title">Sr. Director, Portfolio &amp; Program Management — Corporate Functions Technology</div><div class="lcard-email">tracy.gregory@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Eric Hagens</div><div class="lcard-title">Director, Portfolio Management &amp; Business Ops — EMEA Technology</div><div class="lcard-email">eric.hagens@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Gena Williams</div><div class="lcard-title">Digital Transformation Director, Enterprise Portfolio — Global Ops &amp; Tech</div><div class="lcard-email">gena.williams@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Scott Kelley</div><div class="lcard-title">Sr. Director — Digital Transformation Portfolio</div><div class="lcard-email">scott.kelley@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Austin Pederson</div><div class="lcard-title">Director — Portfolio Management &amp; Transformation</div><div class="lcard-email">austin.pederson@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Douglas Martin</div><div class="lcard-title">Director, Portfolio Management — North America Enterprise Data &amp; Analytics</div><div class="lcard-email">douglas.martin@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Aaron Co</div><div class="lcard-title">Director, Portfolio and Program Management Office</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-mgr"></div><div class="lcard-body"><div class="lcard-name">Camila Snider</div><div class="lcard-title">Principal Portfolio Manager</div><div class="lcard-email">camila.snider@nike.com</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="section-label">Finance, Strategy &amp; Commercial — CFO Matt Friend / CSO Jennifer Hartley</div>
+<div class="row">
+  <div class="col">
+    <div class="ecard c-fin"><div class="nm">Matt Friend</div><div class="rl">EVP, Chief Financial Officer</div><span class="badge">CFO</span></div>
+    <div class="ecard c-fin" style="margin-top:4px"><div class="nm">Jennifer Hartley</div><div class="rl">Chief Strategy Officer</div><span class="badge">Strategy</span></div>
+    <div class="lcluster">
+      <div class="lcluster-hdr">Your leads — Strategy &amp; Transformation</div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Paul Landrum</div><div class="lcard-title">Director, Business Operations — Office of the CFO (Strategy &amp; Enabling)</div><div class="lcard-email">paul.landrum@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Brittany Jones</div><div class="lcard-title">Sr. Director, Enterprise Strategy and Transformation</div><div class="lcard-email">brittany.jones2@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Hank Pierce</div><div class="lcard-title">Director of Strategy &amp; Planning</div><div class="lcard-email">hank.pierce@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Francisco Arantes</div><div class="lcard-title">Director of Strategy &amp; Transformation (Amsterdam)</div><div class="lcard-email">francisco.arantes@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Andres Thomsen</div><div class="lcard-title">Finance Director, Business Planning &amp; Strategy — Japan</div><div class="lcard-email">andres.thomsen@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Katie Heindel Filkins</div><div class="lcard-title">Sr. Director, Transformation, Organizational Strategy &amp; Culture</div><div class="lcard-email">katie.filkins@nike.com</div></div></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="ecard c-fin"><div class="nm">Nike Direct / Global Sales</div><div class="rl">DTC + Wholesale under CFO</div><span class="badge">Commercial</span></div>
+    <div class="lcluster">
+      <div class="lcluster-hdr">Your leads — Store Innovation / Direct</div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Derek Henderson</div><div class="lcard-title">Global Director (GM) — Store Development, Nike Stores Innovation Lab</div><div class="lcard-email">derek.henderson@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Courtney Bonzer</div><div class="lcard-title">Senior Director, Global Store Development &amp; Nike Stores Innovation Labs</div><div class="lcard-email">courtney.bonzer@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Jackie Vanderzanden</div><div class="lcard-title">Digital Innovation Director, Operations / Program Management</div><div class="lcard-email">jackie.vanderzanden@nike.com</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="section-label">Innovation, Design &amp; Product — EVP Phil McCartney / CIO Andy Caine</div>
+<div class="row">
+  <div class="col">
+    <div class="ecard c-idp"><div class="nm">Phil McCartney</div><div class="rl">EVP, Chief Innovation, Design &amp; Product</div><span class="badge">CIDP</span></div>
+    <div class="ecard c-idp" style="margin-top:4px"><div class="nm">Andy Caine</div><div class="rl">Chief Innovation Officer (from Apr 12, 2026)</div><span class="badge">CIO</span></div>
+    <div class="lcluster">
+      <div class="lcluster-hdr">Your leads — Innovation Leadership</div>
+      <div class="lcard"><div class="lcard-dot dot-vp"></div><div class="lcard-body"><div class="lcard-name">Diane Lee</div><div class="lcard-title">Head of Innovation Strategy</div><div class="lcard-email">diane.lee@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-vp"></div><div class="lcard-body"><div class="lcard-name">Kevin Dodson</div><div class="lcard-title">Global VP, Footwear Innovation</div><div class="lcard-email">kevin.dodson@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-vp"></div><div class="lcard-body"><div class="lcard-name">Kathy Gomez</div><div class="lcard-title">VP, Footwear Innovation</div><div class="lcard-email">kgomez@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-vp"></div><div class="lcard-body"><div class="lcard-name">Amy Jones Vaterlaus</div><div class="lcard-title">VP, Sport Innovation Studio</div><div class="lcard-email">amy.jonesvaterlaus@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-vp"></div><div class="lcard-body"><div class="lcard-name">Jordan Rice</div><div class="lcard-title">VP, Innovation Portfolio, Partnerships &amp; Engagement</div><div class="lcard-email">jordan.rice@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-vp"></div><div class="lcard-body"><div class="lcard-name">Roger C (Chen)</div><div class="lcard-title">VP, Nike Innovation — Advanced Digital Creation Studio</div><div class="lcard-email">roger.chen@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-vp"></div><div class="lcard-body"><div class="lcard-name">Sajo Jacob</div><div class="lcard-title">SVP, Consumer, Product &amp; Innovation</div><div class="lcard-email">sajo.jacob@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Anna Baek</div><div class="lcard-title">Director, Global Innovation, Design &amp; Product Strategy</div><div class="lcard-email">anna.baek@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Catharina Walker Eure</div><div class="lcard-title">Expert Innovation Strategist — Director, Athlete of the Future</div><div class="lcard-email">catharina.eure@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">David Bellenghi</div><div class="lcard-title">Footwear Product Director — Innovation</div><div class="lcard-email">david.bellenghi@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Lucas Hartman</div><div class="lcard-title">Director of Innovation Engineering</div><div class="lcard-email">lucas.hartman@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Rory Blanche</div><div class="lcard-title">Product Engineering Director — Nike Innovation</div><div class="lcard-email">rory.blanche@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Steve Park</div><div class="lcard-title">Innovation Director</div><div class="lcard-email">steve.park@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Bryan Farris</div><div class="lcard-title">Director, Program Management — Innovation</div><div class="lcard-email">bryan.farris@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Casey Stark</div><div class="lcard-title">Director, Innovation Portfolio Integration, NSRL &amp; Space</div><div class="lcard-email">casey.stark@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Dyanna Garcia</div><div class="lcard-title">Director, Innovation Portfolio Integration (Apparel/Space/ADCS)</div><div class="lcard-email">dyanna.garcia@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Krissy Yetman</div><div class="lcard-title">Program Director — Footwear Innovation</div><div class="lcard-email">krissy.yetman@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Greg Bass</div><div class="lcard-title">Director of Product Innovation — Global Accessories</div><div class="lcard-email">greg.bass@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Linai Vaz</div><div class="lcard-title">Sr. Director, Applied Apparel Research (NSRL) Innovation</div><div class="lcard-email">linai.vaz@nike.com</div></div></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="ecard c-idp"><div class="nm">Design / Product Creation</div><div class="rl">Global Design &amp; Product under McCartney</div><span class="badge">Design</span></div>
+    <div class="lcluster">
+      <div class="lcluster-hdr">Your leads — Design &amp; Product Tech</div>
+      <div class="lcard"><div class="lcard-dot dot-vp"></div><div class="lcard-body"><div class="lcard-name">Ali Stewart</div><div class="lcard-title">Head of Design Strategy (VP-level)</div><div class="lcard-email">ali.stewart@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Brad Johnson</div><div class="lcard-title">Sr. Director, Consumer &amp; Product Innovation Technology</div><div class="lcard-email">bjohnson@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Jeff Keil</div><div class="lcard-title">Sr. Director of Software Engineering — Innovation</div><div class="lcard-email">jeff.keil@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Alan Kwok</div><div class="lcard-title">Director of Product — Product Creation Innovation</div><div class="lcard-email">alankw@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Lori Knight</div><div class="lcard-title">Sr. Director, Technical PM — Product Innovation &amp; Consumer Creation Technologies</div><div class="lcard-email">lori.knight@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Kathy Simpson</div><div class="lcard-title">Change Management Portfolio Director — Global Product Creation</div><div class="lcard-email">kathy.simpson@nike.com</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="section-label">Brand Presidents — Jordan Brand</div>
+<div class="row">
+  <div class="col" style="max-width:400px">
+    <div class="ecard c-brand"><div class="nm">Sarah Mensah</div><div class="rl">President, Jordan Brand</div><span class="badge">Jordan Brand</span></div>
+    <div class="lcluster">
+      <div class="lcluster-hdr">Your leads — Jordan Brand</div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Marcus Arman</div><div class="lcard-title">Global Director of Brand Concepts &amp; Innovation — Jordan Brand</div><div class="lcard-email">marcus.arman@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Mayowa Laniran</div><div class="lcard-title">Strategy Director — Jordan Brand</div><div class="lcard-email">mayowa.laniran@nike.com</div></div></div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Linnea Dinatale</div><div class="lcard-title">Senior Director of Strategy &amp; Operations — Jordan Footwear</div><div class="lcard-email">linnea.dinatale@nike.com</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="section-label">People / HR — Chief People Officer Treasure Heinle</div>
+<div class="row">
+  <div class="col" style="max-width:400px">
+    <div class="ecard c-ppl"><div class="nm">Treasure Heinle</div><div class="rl">EVP, Chief People Officer</div><span class="badge">HR &amp; Talent</span></div>
+    <div class="lcluster">
+      <div class="lcluster-hdr">Your leads — People &amp; Org</div>
+      <div class="lcard"><div class="lcard-dot dot-dir"></div><div class="lcard-body"><div class="lcard-name">Joni Marsch</div><div class="lcard-title">Director &amp; Chief of Staff, Global Sport Planning Enablement</div><div class="lcard-email">joni.marsch@nike.com</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="note">
+  64 contacts mapped across Innovation (largest cluster — 25 leads), Operations &amp; Technology (20), Strategy &amp; Transformation (9), Jordan Brand (3), Store Innovation/Direct (3), People (1), and other cross-functional roles. Placement is based on title and function keywords; some contacts span multiple orgs (e.g. Christie Blomster, Jordan Rice).
+</div>
+
+</body>
+</html>
