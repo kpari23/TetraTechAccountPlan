@@ -5,1011 +5,811 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tetra Tech Account Plan – Planview</title>
 <style>
-  :root {
-    --red: #E2251B;
-    --dark-red: #B60001;
-    --maroon: #780009;
-    --steel: #6A94AA;
-    --ice: #D9E7ED;
-    --black: #1A1A1A;
-    --gray: #515151;
-    --light: #F7F8FA;
-    --border: #E2E6EA;
-    --white: #FFFFFF;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: Arial, sans-serif; font-size: 14px; color: var(--black); background: #F0F2F5; }
-  .page { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+:root{--red:#E2251B;--dark-red:#B60001;--maroon:#780009;--steel:#6A94AA;--ice:#D9E7ED;--black:#1A1A1A;--gray:#515151;--light:#F7F8FA;--border:#E2E6EA;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;font-size:14px;color:var(--black);background:#F0F2F5}
+.page{max-width:1100px;margin:0 auto;padding:32px 24px}
+.cover{background:var(--black);color:white;border-radius:10px;padding:40px 48px;margin-bottom:28px;position:relative;overflow:hidden}
+.cover-eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-bottom:12px}
+.cover-title{font-size:32px;font-weight:900;margin-bottom:6px}
+.cover-title span{color:var(--red)}
+.cover-sub{font-size:15px;color:#ccc;margin-bottom:20px}
+.cover-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.cover-tag{background:rgba(226,37,27,.15);color:#f88;border:1px solid rgba(226,37,27,.3);border-radius:4px;font-size:11px;font-weight:700;padding:4px 10px;letter-spacing:.05em}
+.cover-tag.winback{background:rgba(234,243,222,.15);color:#9fe1a0;border-color:rgba(100,200,100,.3)}
+.cover-nav{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1)}
+.cover-nav span{font-size:12px;color:#888}
+.news-btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:white;text-decoration:none;padding:9px 18px;border-radius:6px;font-size:13px;font-weight:700}
+.cover-wave{position:absolute;right:-20px;bottom:-20px;opacity:.07;font-size:160px;line-height:1}
 
-  /* COVER */
-  .cover { background: var(--black); color: white; border-radius: 10px; padding: 40px 48px; margin-bottom: 32px; position: relative; overflow: hidden; }
-  .cover-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #aaa; margin-bottom: 12px; }
-  .cover-title { font-size: 32px; font-weight: 900; color: white; margin-bottom: 6px; }
-  .cover-title span { color: var(--red); }
-  .cover-sub { font-size: 15px; color: #ccc; margin-bottom: 20px; }
-  .cover-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .cover-tag { background: rgba(226,37,27,0.15); color: #f88; border: 1px solid rgba(226,37,27,0.3); border-radius: 4px; font-size: 11px; font-weight: 700; padding: 4px 10px; letter-spacing: 0.05em; }
-  .cover-wave { position: absolute; right: -20px; bottom: -20px; opacity: 0.07; font-size: 160px; line-height: 1; }
+.winback-banner{background:linear-gradient(135deg,#1a3a1a,#0d2a0d);border:1px solid rgba(100,200,100,.25);border-radius:10px;padding:18px 24px;margin-bottom:24px;display:flex;align-items:flex-start;gap:14px}
+.wb-icon{width:36px;height:36px;background:rgba(100,200,100,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.wb-title{font-size:14px;font-weight:700;color:#9fe1a0;margin-bottom:4px}
+.wb-body{font-size:13px;color:#ccc;line-height:1.6}
+.wb-body strong{color:#9fe1a0}
 
-  /* NAV */
-  .toc { background: white; border-radius: 10px; padding: 20px 28px; margin-bottom: 32px; border: 1px solid var(--border); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
-  .toc-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--gray); cursor: pointer; }
-  .toc-num { width: 22px; height: 22px; background: var(--red); color: white; border-radius: 50%; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.section{background:white;border-radius:10px;border:1px solid var(--border);margin-bottom:24px;overflow:hidden}
+.section-head{background:var(--black);color:white;padding:16px 28px;display:flex;align-items:center;gap:14px}
+.section-num{background:var(--red);color:white;width:28px;height:28px;border-radius:50%;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.section-title{font-size:16px;font-weight:700}
+.section-body{padding:24px 28px}
 
-  /* SECTIONS */
-  .section { background: white; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 28px; overflow: hidden; }
-  .section-head { background: var(--black); color: white; padding: 16px 28px; display: flex; align-items: center; gap: 14px; }
-  .section-num { background: var(--red); color: white; width: 28px; height: 28px; border-radius: 50%; font-size: 12px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .section-title { font-size: 16px; font-weight: 700; }
-  .section-body { padding: 24px 28px; }
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:18px}
+.card{border:1px solid var(--border);border-radius:8px;padding:16px 18px;background:var(--light)}
+.card-badge{display:inline-block;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;margin-bottom:8px;letter-spacing:.05em;text-transform:uppercase}
+.badge-digital{background:#D9E7ED;color:#185FA5}
+.badge-pivot{background:#FAEEDA;color:#854F0B}
+.badge-growth{background:#EAF3DE;color:#3B6D11}
+.badge-risk{background:#FCEBEB;color:#A32D2D}
+.badge-talent{background:#EEEDFE;color:#3C3489}
+.card-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.card-body{font-size:13px;color:var(--gray);line-height:1.6}
+.card-link{display:block;margin-top:8px;font-size:12px;color:var(--steel);text-decoration:none;word-break:break-all}
+.card-link:hover{text-decoration:underline}
 
-  /* CARDS */
-  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 20px; }
-  .card { border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; background: var(--light); }
-  .card-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px; margin-bottom: 8px; letter-spacing: 0.05em; text-transform: uppercase; }
-  .badge-digital { background: #D9E7ED; color: #185FA5; }
-  .badge-pivot { background: #FAEEDA; color: #854F0B; }
-  .badge-growth { background: #EAF3DE; color: #3B6D11; }
-  .badge-risk { background: #FCEBEB; color: #A32D2D; }
-  .badge-talent { background: #EEEDFE; color: #3C3489; }
-  .card-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--black); }
-  .card-body { font-size: 13px; color: var(--gray); line-height: 1.6; }
-  .card-link { display: block; margin-top: 8px; font-size: 12px; color: var(--steel); text-decoration: none; word-break: break-all; }
-  .card-link:hover { text-decoration: underline; }
+.pain-list{display:flex;flex-direction:column}
+.pain-row{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border)}
+.pain-row:last-child{border-bottom:none}
+.pain-icon{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:white;flex-shrink:0}
+.pi-red{background:var(--red)}.pi-orange{background:#D97706}.pi-steel{background:var(--steel)}.pi-green{background:#3B6D11}
+.pain-content .pt{font-size:13px;font-weight:700;margin-bottom:3px}
+.pain-content .pd{font-size:13px;color:var(--gray);line-height:1.55}
 
-  /* PAIN POINTS */
-  .pain-list { display: flex; flex-direction: column; gap: 0; }
-  .pain-row { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--border); }
-  .pain-row:last-child { border-bottom: none; }
-  .pain-icon { width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; font-weight: 700; color: white; }
-  .pi-red { background: var(--red); }
-  .pi-orange { background: #D97706; }
-  .pi-steel { background: var(--steel); }
-  .pain-content .pt { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
-  .pain-content .pd { font-size: 13px; color: var(--gray); line-height: 1.55; }
+.risk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+.risk-card{border-radius:8px;padding:14px 16px}
+.risk-high{background:#FCEBEB;border-left:3px solid var(--red)}
+.risk-med{background:#FAEEDA;border-left:3px solid #D97706}
+.risk-level{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px}
+.risk-high .risk-level{color:#A32D2D}.risk-med .risk-level{color:#854F0B}
+.risk-name{font-size:13px;font-weight:700;margin-bottom:4px}
+.risk-high .risk-name,.risk-high .risk-desc{color:#791F1F}
+.risk-med .risk-name,.risk-med .risk-desc{color:#633806}
+.risk-desc{font-size:12px;line-height:1.5}
 
-  /* RISK */
-  .risk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 16px; }
-  .risk-card { border-radius: 8px; padding: 14px 16px; }
-  .risk-high { background: #FCEBEB; border-left: 3px solid var(--red); }
-  .risk-med { background: #FAEEDA; border-left: 3px solid #D97706; }
-  .risk-level { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 4px; }
-  .risk-high .risk-level { color: #A32D2D; }
-  .risk-med .risk-level { color: #854F0B; }
-  .risk-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
-  .risk-high .risk-name, .risk-high .risk-desc { color: #791F1F; }
-  .risk-med .risk-name, .risk-med .risk-desc { color: #633806; }
-  .risk-desc { font-size: 12px; line-height: 1.5; }
+.leader-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.leader-card{border:1px solid var(--border);border-radius:8px;padding:16px 18px;background:var(--light)}
+.leader-card.crm-contact{border-color:#3B6D11;background:#f0f8f0}
+.leader-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px}
+.avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;flex-shrink:0}
+.av-red{background:var(--red)}.av-steel{background:var(--steel)}.av-maroon{background:var(--maroon)}.av-dark{background:#444}.av-green{background:#3B6D11}
+.leader-name{font-size:14px;font-weight:700;margin-bottom:2px}
+.leader-title{font-size:12px;color:var(--gray);margin-bottom:4px}
+.maturity-tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;letter-spacing:.05em}
+.mat-high{background:#EAF3DE;color:#3B6D11}.mat-low{background:#FAEEDA;color:#854F0B}.mat-crm{background:#D9E7ED;color:#185FA5}
+.leader-notes{font-size:12.5px;color:var(--gray);line-height:1.6}
+.leader-email{font-size:12px;color:var(--steel);margin-top:6px;display:block}
+.leader-link{display:inline-block;margin-top:6px;font-size:12px;color:var(--steel);text-decoration:none}
+.leader-link:hover{text-decoration:underline}
+.crm-badge{font-size:10px;background:#3B6D11;color:white;padding:2px 7px;border-radius:3px;margin-left:6px;vertical-align:middle}
 
-  /* LEADERSHIP */
-  .leader-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
-  .leader-card { border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; background: var(--light); }
-  .leader-head { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 10px; }
-  .avatar { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: white; flex-shrink: 0; }
-  .av-red { background: var(--red); }
-  .av-steel { background: var(--steel); }
-  .av-maroon { background: var(--maroon); }
-  .av-dark { background: #444; }
-  .leader-name { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
-  .leader-title { font-size: 12px; color: var(--gray); margin-bottom: 4px; }
-  .maturity-tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 3px; letter-spacing: 0.05em; }
-  .mat-high { background: #EAF3DE; color: #3B6D11; }
-  .mat-low { background: #FAEEDA; color: #854F0B; }
-  .leader-notes { font-size: 12.5px; color: var(--gray); line-height: 1.6; }
-  .leader-link { display: inline-block; margin-top: 6px; font-size: 12px; color: var(--steel); text-decoration: none; }
-  .leader-link:hover { text-decoration: underline; }
+.tool-row{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border)}
+.tool-row:last-child{border-bottom:none}
+.tool-name{min-width:150px;font-size:13px;font-weight:700}
+.tool-evidence{font-size:13px;color:var(--gray);line-height:1.55;flex:1}
+.tool-signal{font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;flex-shrink:0;margin-top:2px}
+.sig-confirmed{background:#FCEBEB;color:#A32D2D}.sig-likely{background:#FAEEDA;color:#854F0B}
 
-  /* TOOLS */
-  .tool-row { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--border); }
-  .tool-row:last-child { border-bottom: none; }
-  .tool-name { min-width: 130px; font-size: 13px; font-weight: 700; }
-  .tool-evidence { font-size: 13px; color: var(--gray); line-height: 1.55; flex: 1; }
-  .tool-signal { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
-  .sig-confirmed { background: #FCEBEB; color: #A32D2D; }
-  .sig-likely { background: #FAEEDA; color: #854F0B; }
+.hypothesis-box{background:var(--black);color:white;border-radius:10px;padding:24px 28px;margin-bottom:18px}
+.hyp-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:8px}
+.hyp-title{font-size:20px;font-weight:900;margin-bottom:12px;line-height:1.3}
+.hyp-title span{color:var(--red)}
+.hyp-body{font-size:14px;color:#ccc;line-height:1.7}
+.hyp-pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:18px}
+.hyp-pillar{background:rgba(255,255,255,.07);border-radius:8px;padding:14px 16px;border-left:3px solid var(--red)}
+.hyp-pillar-title{font-size:13px;font-weight:700;color:white;margin-bottom:5px}
+.hyp-pillar-body{font-size:12px;color:#bbb;line-height:1.55}
+.diff-callout{background:rgba(226,37,27,.12);border:1px solid rgba(226,37,27,.3);border-radius:8px;padding:14px 18px;margin-top:16px}
+.diff-label{font-size:11px;color:#f99;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}
+.diff-body{font-size:13px;color:#eee;line-height:1.6}
 
-  /* HYPOTHESIS */
-  .hypothesis-box { background: #1A1A1A; color: white; border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; }
-  .hyp-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; margin-bottom: 8px; }
-  .hyp-title { font-size: 20px; font-weight: 900; color: white; margin-bottom: 12px; line-height: 1.3; }
-  .hyp-title span { color: var(--red); }
-  .hyp-body { font-size: 14px; color: #ccc; line-height: 1.7; }
-  .hyp-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 20px; }
-  .hyp-pillar { background: rgba(255,255,255,0.07); border-radius: 8px; padding: 14px 16px; border-left: 3px solid var(--red); }
-  .hyp-pillar-title { font-size: 13px; font-weight: 700; color: white; margin-bottom: 5px; }
-  .hyp-pillar-body { font-size: 12px; color: #bbb; line-height: 1.55; }
-  .differentiator-callout { background: rgba(226,37,27,0.12); border: 1px solid rgba(226,37,27,0.3); border-radius: 8px; padding: 14px 18px; margin-top: 16px; }
-  .diff-label { font-size: 11px; color: #f99; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 5px; }
-  .diff-body { font-size: 13px; color: #eee; line-height: 1.6; }
+.sf-timeline{margin-top:4px}
+.sf-row{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.sf-row:last-child{border-bottom:none}
+.sf-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.dot-won{background:#3B6D11}.dot-lost{background:var(--red)}.dot-note{background:var(--steel)}
+.sf-year{font-size:12px;font-weight:700;min-width:42px;color:var(--gray)}
+.sf-detail{font-size:13px;color:var(--black);line-height:1.5}
+.sf-detail span{font-size:12px;color:var(--gray)}
 
-  /* EMAILS */
-  .email-wrapper { margin-bottom: 24px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-  .email-header { background: var(--black); color: white; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
-  .email-num { background: var(--red); color: white; width: 24px; height: 24px; border-radius: 50%; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .email-meta { flex: 1; margin-left: 12px; }
-  .email-to { font-size: 13px; font-weight: 700; color: white; }
-  .email-hook { font-size: 11px; color: #aaa; margin-top: 2px; }
-  .email-tabs { display: flex; gap: 0; }
-  .email-tab { padding: 6px 14px; font-size: 11px; font-weight: 700; cursor: pointer; border-radius: 4px; color: #aaa; }
-  .email-tab.active { background: var(--red); color: white; }
-  .email-body { padding: 20px 24px; }
-  .email-subject { font-size: 12px; color: var(--gray); margin-bottom: 12px; }
-  .email-subject span { font-weight: 700; color: var(--black); }
-  .email-content { font-size: 13px; color: var(--black); line-height: 1.75; white-space: pre-wrap; }
-  .talk-track { display: none; background: var(--ice); padding: 18px 20px; font-size: 13px; line-height: 1.7; color: var(--black); border-top: 1px solid var(--border); }
-  .talk-track-label { font-size: 11px; font-weight: 700; color: var(--steel); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 8px; }
-  .talk-section { margin-bottom: 12px; }
-  .talk-section-label { font-size: 11px; font-weight: 700; color: #444; margin-bottom: 3px; }
-  .talk-section-body { font-size: 13px; color: var(--gray); line-height: 1.65; }
+.email-wrapper{margin-bottom:20px;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.email-header{background:var(--black);color:white;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.email-num{background:var(--red);color:white;width:24px;height:24px;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.email-meta{flex:1;margin-left:10px}
+.email-to{font-size:13px;font-weight:700;color:white}
+.email-hook{font-size:11px;color:#aaa;margin-top:2px}
+.email-tabs{display:flex;gap:4px}
+.email-tab{padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer;border-radius:4px;color:#aaa;border:none;background:transparent}
+.email-tab.active{background:var(--red);color:white}
+.email-body{padding:20px 24px}
+.email-subject{font-size:12px;color:var(--gray);margin-bottom:12px}
+.email-subject span{font-weight:700;color:var(--black)}
+.email-content{font-size:13px;color:var(--black);line-height:1.8;white-space:pre-wrap}
+.talk-track{display:none;background:var(--ice);padding:18px 22px;border-top:1px solid var(--border)}
+.talk-track-label{font-size:11px;font-weight:700;color:var(--steel);letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px}
+.talk-section{margin-bottom:12px}
+.talk-section-label{font-size:11px;font-weight:700;color:#444;margin-bottom:3px}
+.talk-section-body{font-size:13px;color:var(--gray);line-height:1.65}
 
-  .sprawl-box { background: #FAEEDA; border-radius: 8px; border-left: 3px solid #D97706; padding: 14px 18px; margin-top: 16px; }
-  .sprawl-label { font-size: 11px; font-weight: 700; color: #854F0B; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
-  .sprawl-body { font-size: 13px; color: #633806; line-height: 1.6; }
+.sprawl-box{background:#FAEEDA;border-radius:8px;border-left:3px solid #D97706;padding:14px 18px;margin-top:14px}
+.sprawl-label{font-size:11px;font-weight:700;color:#854F0B;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.sprawl-body{font-size:13px;color:#633806;line-height:1.6}
+.opp-box{background:var(--ice);border-radius:8px;border-left:3px solid var(--steel);padding:14px 18px;margin-top:14px}
+.opp-label{font-size:11px;font-weight:700;color:var(--steel);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.opp-body{font-size:13px;color:#185FA5;line-height:1.6}
 
-  .opp-box { background: var(--ice); border-radius: 8px; border-left: 3px solid var(--steel); padding: 14px 18px; margin-top: 16px; }
-  .opp-label { font-size: 11px; font-weight: 700; color: var(--steel); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
-  .opp-body { font-size: 13px; color: #185FA5; line-height: 1.6; }
+.section-sub{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#888;border-bottom:1px solid var(--border);padding-bottom:6px;margin:18px 0 14px}
 
-  hr.div { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
-
-  @media (max-width: 600px) {
-    .card-grid, .leader-grid, .risk-grid, .hyp-pillars { grid-template-columns: 1fr; }
-    .section-body { padding: 16px; }
-    .email-tabs { display: none; }
-  }
+@media(max-width:600px){.card-grid,.leader-grid,.risk-grid,.hyp-pillars{grid-template-columns:1fr}.section-body{padding:16px}.cover{padding:24px}}
 </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- COVER -->
-  <div class="cover">
-    <div class="cover-eyebrow">Planview Account Plan &nbsp;|&nbsp; Prepared April 2026</div>
-    <div class="cover-title">Tetra Tech <span>(NASDAQ: TTEK)</span></div>
-    <div class="cover-sub">Strategic intelligence across 5 dimensions &nbsp;|&nbsp; Account Executive resource</div>
-    <div class="cover-tags">
-      <span class="cover-tag">Section 1: Strategic Initiatives</span>
-      <span class="cover-tag">Section 2: Key Stakeholders</span>
-      <span class="cover-tag">Section 3: Current Tech Stack</span>
-      <span class="cover-tag">Section 4: Value Hypothesis</span>
-      <span class="cover-tag">Section 5: Outreach Playbook</span>
-    </div>
-    <div class="cover-wave">◆</div>
-    <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
-      <span style="font-size:12px;color:#888;">You are viewing: <strong style="color:white;">Account Plan</strong></span>
-      <a href="news.html" style="display:inline-flex;align-items:center;gap:8px;background:#E2251B;color:white;text-decoration:none;padding:9px 18px;border-radius:6px;font-size:13px;font-weight:700;letter-spacing:0.03em;">
-        <span style="font-size:16px;">&#9642;</span> Live News Feed &rarr;
-      </a>
-    </div>
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-eyebrow">Planview Account Plan &nbsp;|&nbsp; Prepared April 2026 &nbsp;|&nbsp; Owner: Kush Parikh</div>
+  <div class="cover-title">Tetra Tech <span>(NASDAQ: TTEK)</span></div>
+  <div class="cover-sub">Strategic account plan enriched with Salesforce history, live market intelligence, and Planview product mapping</div>
+  <div class="cover-tags">
+    <span class="cover-tag winback">&#9650; Winback Opportunity</span>
+    <span class="cover-tag">Former Customer 2017 to 2023</span>
+    <span class="cover-tag">AgilePlace Lapsed</span>
+    <span class="cover-tag">Expansion Target: Portfolios</span>
+    <span class="cover-tag">Last Activity: Mar 2023</span>
   </div>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 1 -->
-  <!-- ============================================================ -->
-  <div class="section" id="s1">
-    <div class="section-head">
-      <div class="section-num">1</div>
-      <div class="section-title">Strategic Initiatives, Leadership Changes &amp; Business Risks</div>
-    </div>
-    <div class="section-body">
-
-      <p style="font-size:13px;color:#515151;margin-bottom:18px;line-height:1.6;">Tetra Tech is a $5B global consulting and engineering firm (NASDAQ: TTEK) specializing in water, environment, and sustainable infrastructure. As of February 2026, the company has a new CEO, a compressed backlog following a major federal revenue shock, and an aggressive pivot toward digital services and commercial/international markets. All four dynamics create urgency around portfolio prioritization, resource deployment, and enterprise visibility.</p>
-
-      <p style="font-size:12px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#888;margin-bottom:12px;">Named Strategic Initiatives</p>
-      <div class="card-grid">
-        <div class="card">
-          <span class="card-badge badge-digital">Digital</span>
-          <div class="card-title">Digital Automation &amp; AI Expansion (Target: $500M by 2030)</div>
-          <div class="card-body">Tetra Tech is building a $500M annual revenue digital systems practice through acquisitions including SAGE Group (AI-driven water automation, 2025) and LS Technologies (federal IT, 2024). Focus areas: AI, automation, cybersecurity, cloud analytics, and smart infrastructure. Led by incoming CEO Roger Argus.</div>
-          <a class="card-link" href="https://smartwatermagazine.com/news/smart-water-magazine/tetra-tech-expand-digital-automation-capabilities-acquisition-sage-group" target="_blank">Source: Smart Water Magazine</a>
-        </div>
-        <div class="card">
-          <span class="card-badge badge-pivot">Pivot</span>
-          <div class="card-title">Federal Revenue Diversification</div>
-          <div class="card-body">After DOGE-driven USAID contract terminations wiped ~$227M in quarterly revenue and triggered a $92.4M goodwill impairment, Tetra Tech is actively rebalancing toward U.S. Army Corps of Engineers, AFCEC, state and local water clients, and international markets to fill the gap.</div>
-          <a class="card-link" href="https://labusinessjournal.com/featured/tetra-tech-takes-a-hit/" target="_blank">Source: LA Business Journal</a>
-        </div>
-        <div class="card">
-          <span class="card-badge badge-growth">Growth</span>
-          <div class="card-title">Leading with Science® — Global Expansion</div>
-          <div class="card-body">Tetra Tech's brand-signature approach is driving international growth with major wins in the UK, Netherlands (Rijkswaterstaat), and Australia. The company is using international commercial momentum to offset U.S. federal dependency and build a resilient, 30,000-person global platform.</div>
-          <a class="card-link" href="https://investor.tetratech.com/news/news-details/2025/Tetra-Tech-Announces-Leadership-Appointments/default.aspx" target="_blank">Source: Tetra Tech Investor Relations</a>
-        </div>
-        <div class="card">
-          <span class="card-badge badge-growth">Growth</span>
-          <div class="card-title">Strategic Acquisition Program</div>
-          <div class="card-body">$80M in revenue attributed to recent acquisitions in FY2025 alone. The M&amp;A strategy targets digital capability, program management depth, and geographic diversification. January 2026: Halvik Corp acquired (agile federal IT, DevOps, enterprise architecture). Board authorized $500M stock repurchase alongside continued deal-making.</div>
-          <a class="card-link" href="https://investor.tetratech.com/news/news-details/2026/Tetra-Tech-Acquires-Halvik-Corp/default.aspx" target="_blank">Source: Tetra Tech / Halvik Acquisition</a>
-        </div>
-        <div class="card">
-          <span class="card-badge badge-talent">Leadership</span>
-          <div class="card-title">CEO Succession &amp; Strategic Continuity</div>
-          <div class="card-body">Roger Argus became CEO effective February 19, 2026 after 30+ years at the company. Dan Batrack moved to Executive Chairman. Jonathan Weiss was appointed President of Commercial/International Services Group. This is a deliberate, internally-planned transition focused on continuity but creating a window for new strategic conversations.</div>
-          <a class="card-link" href="https://www.businesswire.com/news/home/20260106425979/en/Tetra-Tech-to-Appoint-Roger-Argus-as-Chief-Executive-Officer-Dan-Batrack-to-Become-Executive-Chairman" target="_blank">Source: Business Wire / CEO Transition</a>
-        </div>
-        <div class="card">
-          <span class="card-badge badge-risk">Risk Response</span>
-          <div class="card-title">Backlog Recovery &amp; Portfolio Reprioritization</div>
-          <div class="card-body">Following a 4.5% sequential backlog decline to $3.95B, leadership is actively managing which initiatives to accelerate, pause, or pivot. This is a live portfolio reprioritization event playing out in real time — the exact challenge Planview is built to solve at enterprise scale.</div>
-          <a class="card-link" href="https://www.panabee.com/news/tetra-tech-earnings-q4-2025-report" target="_blank">Source: Panabee / Q4 2025 Earnings Analysis</a>
-        </div>
-      </div>
-
-      <p style="font-size:12px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#888;margin:20px 0 12px;">Business Risks &amp; Connected Pain Points</p>
-      <div class="pain-list">
-        <div class="pain-row">
-          <div class="pain-icon pi-red">!</div>
-          <div class="pain-content">
-            <div class="pt">Federal concentration risk — USAID collapse exposed structural over-reliance</div>
-            <div class="pd">A single executive order wiped out 80% of USAID/State Dept. revenue in one quarter ($227M hit). The company lacked the portfolio visibility and rapid reprioritization capability to absorb this shock without a goodwill impairment event. Pain point: inability to reallocate resources quickly enough when priorities shift suddenly.</div>
-          </div>
-        </div>
-        <div class="pain-row">
-          <div class="pain-icon pi-orange">~</div>
-          <div class="pain-content">
-            <div class="pt">Post-acquisition integration complexity — multiple siloed delivery methodologies</div>
-            <div class="pd">Acquisitions of SAGE Group (agile automation), LS Technologies (federal IT), and Halvik (DevOps/agile) have brought fundamentally different project delivery cultures under one roof. Without a unified portfolio platform, resource visibility across waterfall, agile, and hybrid delivery is highly fragmented. Pain point: tool sprawl and inability to see a single portfolio view.</div>
-          </div>
-        </div>
-        <div class="pain-row">
-          <div class="pain-icon pi-steel">?</div>
-          <div class="pain-content">
-            <div class="pt">New CEO transition creates strategic re-evaluation pressure</div>
-            <div class="pd">Roger Argus is two months into the CEO role. New CEOs typically conduct portfolio reviews within the first 90 to 180 days. This creates an active window for Planview to position as the system that gives leadership the real-time visibility needed to make informed, defensible trade-off decisions. Pain point: absence of objective, data-driven portfolio prioritization at the executive level.</div>
-          </div>
-        </div>
-        <div class="pain-row">
-          <div class="pain-icon pi-red">$</div>
-          <div class="pain-content">
-            <div class="pt">Backlog credibility under analyst scrutiny</div>
-            <div class="pd">Analysts have flagged that new contract wins are not yet fully replacing lost federal volume, and future backlog growth is dependent on federal project timing and issuance risk. Leadership needs a credible, visible portfolio narrative to defend valuation. Pain point: lack of real-time, board-ready portfolio performance data.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="risk-grid">
-        <div class="risk-card risk-high">
-          <div class="risk-level">High Risk</div>
-          <div class="risk-name">Policy-Driven Revenue Shock</div>
-          <div class="risk-desc">Ongoing federal spending uncertainty under current administration. Further contract terminations or funding freezes could repeat the USAID event across other federal segments.</div>
-        </div>
-        <div class="risk-card risk-high">
-          <div class="risk-level">High Risk</div>
-          <div class="risk-name">M&amp;A Integration Execution</div>
-          <div class="risk-desc">Three major tech acquisitions in 18 months with different delivery methodologies. Without unified governance, synergies won't materialize and resource conflicts will grow.</div>
-        </div>
-        <div class="risk-card risk-med">
-          <div class="risk-level">Medium Risk</div>
-          <div class="risk-name">International Compliance &amp; Margin</div>
-          <div class="risk-desc">Pivot to international clients introduces FCPA exposure and currency headwinds. International margin profiles differ significantly from domestic federal cost-plus work.</div>
-        </div>
-        <div class="risk-card risk-med">
-          <div class="risk-level">Medium Risk</div>
-          <div class="risk-name">Digital Practice ROI Proof</div>
-          <div class="risk-desc">The $500M digital practice target by 2030 is ambitious. Failure to demonstrate measurable outcomes from digital investments will erode board and analyst confidence.</div>
-        </div>
-      </div>
-    </div>
+  <div class="cover-nav">
+    <span>You are viewing: <strong style="color:white;">Account Plan</strong></span>
+    <a href="news.html" class="news-btn">&#9642; Live News Feed &rarr;</a>
   </div>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 2 -->
-  <!-- ============================================================ -->
-  <div class="section" id="s2">
-    <div class="section-head">
-      <div class="section-num">2</div>
-      <div class="section-title">Key Stakeholders — Decision-Makers, Champions &amp; Influencers</div>
-    </div>
-    <div class="section-body">
-      <p style="font-size:13px;color:#515151;margin-bottom:18px;line-height:1.6;">Tetra Tech does not publicly advertise a standalone EPMO or enterprise portfolio function — consistent with a decentralized, operating-unit-led structure. The most relevant entry points for Planview are the CIO, CFO, SVP Enterprise Risk, Chief Innovation Officer, and the heads of the two main operating groups. All individuals below have verified LinkedIn profiles or public bios.</p>
-
-      <div class="leader-grid">
-
-        <div class="leader-card">
-          <div class="leader-head">
-            <div class="avatar av-steel">CC</div>
-            <div>
-              <div class="leader-name">Craig L. Christensen</div>
-              <div class="leader-title">SVP &amp; Chief Information Officer</div>
-              <span class="maturity-tag mat-high">High Maturity Target</span>
-            </div>
-          </div>
-          <div class="leader-notes">Christensen has been CIO since 2002 and is responsible for enterprise IT, ERP (Oracle-based), and shared services. He has overseen multiple major system implementations. His mandate now includes integrating digital acquisitions (SAGE, LS Technologies, Halvik) into a coherent enterprise tech fabric. This creates a direct opening for a conversation about portfolio visibility across hybrid delivery teams.<br><br>Planview angle: unified portfolio governance layer sitting above disparate delivery tools — connecting agile Halvik teams with traditional Tetra Tech waterfall engineering programs.</div>
-          <a class="leader-link" href="https://www.linkedin.com/in/craig-christensen-4777972/" target="_blank">LinkedIn Profile</a>
-          &nbsp;|&nbsp;
-          <a class="leader-link" href="https://www.tetratech.com/about/management-team/craig-l-christensen/" target="_blank">Bio: tetratech.com</a>
-        </div>
-
-        <div class="leader-card">
-          <div class="leader-head">
-            <div class="avatar av-red">SB</div>
-            <div>
-              <div class="leader-name">Steven M. Burdick</div>
-              <div class="leader-title">EVP &amp; Chief Financial Officer</div>
-              <span class="maturity-tag mat-high">High Maturity Target</span>
-            </div>
-          </div>
-          <div class="leader-notes">Burdick has been EVP/CFO since 2011 and is the primary architect of capital allocation decisions. Following the USAID revenue shock and $92.4M goodwill impairment, he is directly responsible for rebuilding earnings credibility with investors and analysts. He is acutely aware that subjective portfolio prioritization creates financial risk.<br><br>Planview angle: value-based portfolio scoring that gives the CFO a defensible, quantitative basis for investment decisions — directly addressing analyst scrutiny over backlog quality and revenue visibility.</div>
-          <a class="leader-link" href="https://www.linkedin.com/in/steven-burdick/" target="_blank">LinkedIn Profile</a>
-        </div>
-
-        <div class="leader-card">
-          <div class="leader-head">
-            <div class="avatar av-maroon">BO</div>
-            <div>
-              <div class="leader-name">Brendan O'Rourke</div>
-              <div class="leader-title">SVP, Enterprise Risk Management</div>
-              <span class="maturity-tag mat-low">Low-to-Mid Maturity</span>
-            </div>
-          </div>
-          <div class="leader-notes">O'Rourke oversees enterprise risk — a function that just experienced a worst-case scenario: an 80% revenue collapse from a single client category with insufficient early warning. This creates a compelling, specific conversation about portfolio-level scenario modeling and risk-based prioritization.<br><br>Planview angle: dynamic scenario planning to stress-test portfolio concentration and model rapid reprioritization responses before a disruption hits, not after.</div>
-          <a class="leader-link" href="https://www.linkedin.com/in/brendan-o-rourke-1b14486/" target="_blank">LinkedIn Profile</a>
-          &nbsp;|&nbsp;
-          <a class="leader-link" href="https://www.tetratech.com/about/management-team/brendan-orourke/" target="_blank">Bio: tetratech.com</a>
-        </div>
-
-        <div class="leader-card">
-          <div class="leader-head">
-            <div class="avatar av-steel">LS</div>
-            <div>
-              <div class="leader-name">Leslie L. Shoemaker, PhD</div>
-              <div class="leader-title">Chief Innovation &amp; Sustainability Officer</div>
-              <span class="maturity-tag mat-high">High Maturity</span>
-            </div>
-          </div>
-          <div class="leader-notes">Shoemaker is one of the most active thought leaders at Tetra Tech — prolific on LinkedIn, engaged on portfolio-level thinking across climate and sustainability investments. She champions data-driven decision-making and has written publicly about portfolio-approach methodologies. Her innovation mandate directly intersects with the need to measure and prioritize the digital and sustainability initiative portfolio.<br><br>Planview angle: connecting innovation priorities to measurable business outcomes and portfolio-level ROI visibility.</div>
-          <a class="leader-link" href="https://www.linkedin.com/in/leslie-shoemaker/" target="_blank">LinkedIn Profile</a>
-        </div>
-
-        <div class="leader-card">
-          <div class="leader-head">
-            <div class="avatar av-dark">JW</div>
-            <div>
-              <div class="leader-name">Jonathan S. Weiss</div>
-              <div class="leader-title">President, Commercial/International Services Group</div>
-              <span class="maturity-tag mat-low">Low-to-Mid Maturity</span>
-            </div>
-          </div>
-          <div class="leader-notes">Weiss was just elevated to CIG President in October 2025 and is leading the international commercial pivot that is central to Tetra Tech's recovery strategy. He is running a fast-growing, geographically diverse group that now includes SAGE Group's automation teams and must coordinate delivery across multiple countries, clients, and methodologies.<br><br>Planview angle: portfolio visibility across a distributed, multi-methodology global group — enabling faster reprioritization as international opportunities shift.</div>
-          <a class="leader-link" href="https://investor.tetratech.com/news/news-details/2025/Tetra-Tech-Announces-Leadership-Appointments/default.aspx" target="_blank">Source: Tetra Tech IR</a>
-        </div>
-
-        <div class="leader-card">
-          <div class="leader-head">
-            <div class="avatar av-red">DA</div>
-            <div>
-              <div class="leader-name">Daniel Archer</div>
-              <div class="leader-title">Director, Business Development / Government Services</div>
-              <span class="maturity-tag mat-low">Influencer / Champion</span>
-            </div>
-          </div>
-          <div class="leader-notes">Archer is a CP APMP-certified strategist at the Government Services Group and recently led a team that won Tetra Tech's internal Tech 1000 Challenge for an AI-powered business development tool. His LinkedIn activity shows deep interest in leveraging data and technology to improve strategic prioritization within government programs.<br><br>Planview angle: a potential internal champion who already thinks in terms of technology-enabled strategic execution — could be an advocate for Planview at the program/portfolio level.</div>
-          <a class="leader-link" href="https://www.linkedin.com/in/archerdc/" target="_blank">LinkedIn Profile</a>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 3 -->
-  <!-- ============================================================ -->
-  <div class="section" id="s3">
-    <div class="section-head">
-      <div class="section-num">3</div>
-      <div class="section-title">Current Technology Landscape — SPM, PPM &amp; Agile Delivery Tools</div>
-    </div>
-    <div class="section-body">
-      <p style="font-size:13px;color:#515151;margin-bottom:18px;line-height:1.6;">No single enterprise PPM/SPM platform has been confirmed at Tetra Tech. Evidence points to a fragmented, multi-tool environment typical of large, decentralized engineering firms that have grown heavily through acquisition. The picture below is based on job postings, LinkedIn employee comments, acquisition announcements, and company documentation.</p>
-
-      <div class="pain-list">
-        <div class="tool-row">
-          <div class="tool-name">Oracle ERP (Internal Project System)</div>
-          <div class="tool-evidence">Multiple Tetra Tech job postings reference an "Oracle-based environment" for project initiation, cost tracking, and financial approvals. The CIO (Craig Christensen) has been responsible for ERP implementation for over two decades. Oracle is the backbone of financial project management but lacks strategic portfolio prioritization and scenario planning capability.</div>
-          <span class="tool-signal sig-confirmed">Confirmed Active</span>
-        </div>
-        <div class="tool-row">
-          <div class="tool-name">Microsoft Teams / SharePoint</div>
-          <div class="tool-evidence">A Tetra Tech employee cited Microsoft Teams as the primary tool for scheduling, deadline management, and internal coordination in a LinkedIn post. SharePoint is referenced in job postings as a document management system. These tools indicate reliance on collaboration platforms rather than purpose-built portfolio management software.</div>
-          <span class="tool-signal sig-confirmed">Confirmed Active</span>
-        </div>
-        <div class="tool-row">
-          <div class="tool-name">Microsoft Power BI</div>
-          <div class="tool-evidence">BridgeNet International (a Tetra Tech company) lists Microsoft Power BI as part of their active tech stack per LeadIQ. Power BI is commonly used for project reporting dashboards — indicating reporting happens downstream of execution rather than through an integrated portfolio platform.</div>
-          <span class="tool-signal sig-confirmed">Confirmed (Subsidiary)</span>
-        </div>
-        <div class="tool-row">
-          <div class="tool-name">Jira / DevOps Tooling (Halvik, LS Technologies)</div>
-          <div class="tool-evidence">Halvik Corp — acquired January 2026 — explicitly describes itself as built on agile and DevOps principles, with Jira-type tooling central to delivery. LS Technologies (acquired 2024) is a federal IT firm operating in agile environments. These acquired teams operate in a fundamentally different delivery model than Tetra Tech's traditional engineering project management approach.</div>
-          <span class="tool-signal sig-confirmed">Confirmed (Acquired Units)</span>
-        </div>
-        <div class="tool-row">
-          <div class="tool-name">Smartsheet (likely at program/PMO level)</div>
-          <div class="tool-evidence">Smartsheet is the dominant collaborative work management tool in the A&E and government consulting sector. Its spreadsheet-like interface makes it a natural fit for Tetra Tech's engineering PMs. While no direct Tetra Tech reference was found, its use is highly probable at the program management and reporting layer given the firm's profile and size. Smartsheet does not provide enterprise-level strategic portfolio trade-off capability.</div>
-          <span class="tool-signal sig-likely">Likely Active</span>
-        </div>
-        <div class="tool-row">
-          <div class="tool-name">Proprietary / Custom Tools (Tetra Tech Delta)</div>
-          <div class="tool-evidence">Tetra Tech references its internal "Tetra Tech Delta suite of technologies" for defense and environmental programs. This proprietary tooling for data collection and analysis is separate from enterprise portfolio management and creates additional siloing. Daniel Archer's AI tool for business development (Tech 1000 winner) also suggests homegrown solutions are common.</div>
-          <span class="tool-signal sig-confirmed">Confirmed Active</span>
-        </div>
-      </div>
-
-      <div class="sprawl-box">
-        <div class="sprawl-label">Tool Sprawl Assessment</div>
-        <div class="sprawl-body">Tetra Tech's technology landscape exhibits all the hallmarks of enterprise tool sprawl: Oracle ERP for project financials, Microsoft for collaboration and reporting, Jira/agile tooling in acquired federal IT units, proprietary Delta tools in delivery, and likely Smartsheet at the PMO layer. There is no evidence of a unified strategic portfolio layer connecting investment decisions to execution status. This means portfolio trade-off decisions are currently being made with incomplete visibility — relying on manual consolidation, political advocacy, and anecdotal status updates rather than real-time business value data. The USAID revenue shock made this structurally visible: leadership could not rapidly reassign resources or scenario-plan alternatives because no integrated portfolio system existed to support that decision.</div>
-      </div>
-
-      <div class="opp-box">
-        <div class="opp-label">Planview Entry Point</div>
-        <div class="opp-body">Planview is uniquely positioned as the connective layer between Tetra Tech's existing tools — not replacing Oracle or Jira, but sitting above them to provide the strategic portfolio visibility, value-based prioritization, and scenario modeling that none of the current tools provide. The combination of a new CEO, a live portfolio reprioritization event, and a fragmented multi-acquisition tech landscape creates the clearest possible opening for a Planview enterprise conversation.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 4 -->
-  <!-- ============================================================ -->
-  <div class="section" id="s4">
-    <div class="section-head">
-      <div class="section-num">4</div>
-      <div class="section-title">Tailored Value Hypothesis</div>
-    </div>
-    <div class="section-body">
-      <div class="hypothesis-box">
-        <div class="hyp-label">Core Value Hypothesis</div>
-        <div class="hyp-title">Tetra Tech is executing a real-time portfolio reprioritization — without a platform built to do it. <span>Planview closes that gap.</span></div>
-        <div class="hyp-body">In Q2 FY2025, Tetra Tech absorbed an $227M revenue shock when USAID contracts were terminated. The company responded by pivoting its portfolio toward commercial water, international markets, and digital automation. That pivot is underway — but it is being managed through a combination of Oracle ERP financials, Microsoft collaboration tools, siloed agile delivery systems in acquired units, and manual executive judgment. There is no enterprise system providing real-time visibility into which initiatives are delivering business value, which resources are overcommitted across the new blended portfolio, or how alternative scenarios would perform if another federal disruption occurs. Planview directly solves this. It connects Tetra Tech's strategic objectives to resource allocation and portfolio execution in a single platform — enabling the new CEO, CFO, and business group presidents to make trade-off decisions based on agreed business value rather than political weight or spreadsheet consolidation.</div>
-        <div class="hyp-pillars">
-          <div class="hyp-pillar">
-            <div class="hyp-pillar-title">Outcome 1: Rapid Reprioritization</div>
-            <div class="hyp-pillar-body">When the next policy or market disruption hits, Planview's scenario planning gives leadership a modeled response within hours — not weeks of manual portfolio reconstruction.</div>
-          </div>
-          <div class="hyp-pillar">
-            <div class="hyp-pillar-title">Outcome 2: Unified Portfolio Across M&amp;A</div>
-            <div class="hyp-pillar-body">Tetra Tech has acquired three tech firms in 18 months. Planview connects agile Halvik teams, traditional Tetra Tech engineering programs, and SAGE Group automation projects into a single portfolio view — preserving delivery method flexibility while enabling portfolio-level governance.</div>
-          </div>
-          <div class="hyp-pillar">
-            <div class="hyp-pillar-title">Outcome 3: Board-Credible Prioritization</div>
-            <div class="hyp-pillar-body">Analysts are already scrutinizing Tetra Tech's backlog quality. Planview replaces subjective project advocacy with value-based scoring — giving the CFO and CEO a defensible, transparent basis for investment decisions when presenting to the board.</div>
-          </div>
-          <div class="hyp-pillar">
-            <div class="hyp-pillar-title">Outcome 4: Resource Optimization at Scale</div>
-            <div class="hyp-pillar-body">With 30,000+ employees across water, environmental, federal, and now digital practices, resource allocation conflicts are invisible without a platform. Planview provides capacity modeling and demand-supply visibility across the full enterprise portfolio.</div>
-          </div>
-        </div>
-        <div class="differentiator-callout">
-          <div class="diff-label">Key Planview Differentiator — Why Not Competitors</div>
-          <div class="diff-body">Smartsheet gives teams collaboration. ServiceNow gives IT governance. Neither provides the strategic portfolio layer Tetra Tech needs: value-based trade-off decisions at the executive level, dynamic scenario modeling across $5B in revenue, and flexible support for the agile-plus-waterfall hybrid delivery model Tetra Tech now runs. Planview is the only platform purpose-built to connect strategy, planning, and delivery in a single environment — at the scale and complexity Tetra Tech operates.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 5 -->
-  <!-- ============================================================ -->
-  <div class="section" id="s5">
-    <div class="section-head">
-      <div class="section-num">5</div>
-      <div class="section-title">Outreach Playbook — 10 Personalized Emails &amp; Talk Tracks</div>
-    </div>
-    <div class="section-body">
-      <p style="font-size:13px;color:#515151;margin-bottom:20px;line-height:1.6;">Each message below is written for a specific stakeholder with a unique entry point, value angle, and tone. No two messages share the same structure, hook, or Planview differentiator. Click the tab labels to toggle between the email and the phone talk track for each contact.</p>
-
-      <!-- EMAIL 1 -->
-      <div class="email-wrapper">
-        <div class="email-header">
-          <div class="email-num">1</div>
-          <div class="email-meta">
-            <div class="email-to">Craig Christensen &nbsp;|&nbsp; SVP &amp; CIO</div>
-            <div class="email-hook">Entry point: M&amp;A integration complexity / unified portfolio visibility</div>
-          </div>
-        </div>
-        <div class="email-body">
-          <div class="email-subject">Subject: <span>Three acquisitions, three delivery models — one portfolio view</span></div>
-          <div class="email-content">Craig,
-
-Three acquisitions in eighteen months — SAGE Group's automation teams, LS Technologies' federal IT practice, and now Halvik's agile and DevOps organization — means Tetra Tech is running waterfall engineering programs, Agile sprints, and infrastructure automation pipelines all at once.
-
-Most CIOs I speak with in that position find that the tools designed for individual delivery methods simply do not scale to give anyone a consistent view of the whole. The result is that resource allocation decisions get made from gut feel or loudest voice rather than actual portfolio data.
-
-Planview was built for exactly this structure. It sits above existing delivery tools — not replacing Oracle or Jira — and provides the unified visibility layer that lets your leadership team see where resources are committed across every delivery method, prioritize investments based on agreed business value, and respond to shifts without a manual consolidation exercise every time.
-
-Given what Tetra Tech is navigating right now — portfolio reprioritization, a new CEO establishing his operating rhythm, and three distinct delivery cultures to unify — I think there is a very specific and timely conversation to be had.
-
-Would fifteen minutes this week or next make sense?
-
-[Your name]
-Planview</div>
-        </div>
-        <div class="talk-track" id="tt1">
-          <div class="talk-track-label">Phone Talk Track</div>
-          <div class="talk-section">
-            <div class="talk-section-label">Opening (10 seconds)</div>
-            <div class="talk-section-body">"Craig, this is [name] from Planview. I work with CIOs at large engineering and consulting firms managing complex multi-acquisition environments. I have one specific observation about Tetra Tech that I think is worth sixty seconds of your time — is now okay?"</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Core Observation (30 seconds)</div>
-            <div class="talk-section-body">"You have brought in three technology firms in eighteen months — SAGE, LS Technologies, and Halvik. Each one runs a different delivery model. Agile, waterfall, DevOps. What I hear from CIOs in similar positions is that no single tool gives them a consistent portfolio view across those methods. Oracle handles the financials, Jira handles agile delivery, but nothing connects them to help leadership prioritize investments or reallocate resources quickly when something changes."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Planview Position (15 seconds)</div>
-            <div class="talk-section-body">"Planview is the platform that sits above those tools and provides that unified layer. It is not about replacing what you have — it is about giving your executive team visibility they currently do not have."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Ask</div>
-            <div class="talk-section-body">"Would it be useful to see how other engineering firms your size have approached this? I could share a fifteen-minute overview — no commitment, just context."</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- EMAIL 2 -->
-      <div class="email-wrapper">
-        <div class="email-header">
-          <div class="email-num">2</div>
-          <div class="email-meta">
-            <div class="email-to">Steven Burdick &nbsp;|&nbsp; EVP &amp; CFO</div>
-            <div class="email-hook">Entry point: backlog credibility / value-based investment defense</div>
-          </div>
-        </div>
-        <div class="email-body">
-          <div class="email-subject">Subject: <span>Defending backlog quality when analysts are already watching</span></div>
-          <div class="email-content">Steven,
-
-Analysts covering Tetra Tech have flagged a specific concern: that new contract wins are not yet fully replacing the federal volume lost through USAID, and that future backlog growth is dependent on federal timing risks outside the company's control.
-
-That kind of scrutiny puts pressure on every investment decision you make internally. When capital is being allocated across a portfolio that includes commercial water expansion, a $500M digital practice build, and three recently acquired IT businesses — the absence of a consistent, value-based scoring methodology means decisions can always be challenged as subjective or politically protected.
-
-Planview provides a structured framework for portfolio investment decisions — one that scores initiatives against agreed business value criteria, models resource constraints, and generates the kind of transparent, data-backed prioritization record that holds up in a board presentation or analyst call.
-
-Several CFOs I work with use Planview specifically to change the governance conversation: from "who pushed hardest for funding" to "here is what our portfolio is delivering against our stated objectives."
-
-Worth a thirty-minute conversation to explore whether that is relevant to where you are right now?
-
-[Your name]
-Planview</div>
-        </div>
-        <div class="talk-track" id="tt2">
-          <div class="talk-track-label">Phone Talk Track</div>
-          <div class="talk-section">
-            <div class="talk-section-label">Opening</div>
-            <div class="talk-section-body">"Steven, I am [name] from Planview. I focus on CFOs at professional services firms managing portfolio investment decisions under investor scrutiny. I have a specific observation about Tetra Tech's current situation — do you have sixty seconds?"</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Core Observation</div>
-            <div class="talk-section-body">"Analysts are already flagging backlog concentration risk and asking whether new wins are replacing lost federal volume fast enough. In that environment, every internal capital allocation decision you make is under an implicit microscope. If your portfolio prioritization process relies on executive advocacy or spreadsheet consolidation, that is a governance vulnerability — not just an efficiency problem."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Planview Position</div>
-            <div class="talk-section-body">"Planview replaces that with a structured, value-based scoring system. Every initiative is ranked against agreed criteria — financial return, strategic alignment, resource feasibility. When someone questions a prioritization decision, you have a transparent, auditable record to point to."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Ask</div>
-            <div class="talk-section-body">"I would like to share how two or three firms in your sector have used this to strengthen their governance narrative. Would thirty minutes work this week?"</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- EMAIL 3 -->
-      <div class="email-wrapper">
-        <div class="email-header">
-          <div class="email-num">3</div>
-          <div class="email-meta">
-            <div class="email-to">Brendan O'Rourke &nbsp;|&nbsp; SVP, Enterprise Risk Management</div>
-            <div class="email-hook">Entry point: USAID shock / scenario planning before the next disruption</div>
-          </div>
-        </div>
-        <div class="email-body">
-          <div class="email-subject">Subject: <span>What would scenario planning have changed about the USAID response</span></div>
-          <div class="email-content">Brendan,
-
-The USAID situation was a stress test Tetra Tech did not choose. One executive order, and roughly eighty percent of that revenue category was gone within a quarter.
-
-I am not raising that to be provocative — it is genuinely one of the most difficult risk events any professional services firm could face. But I think it surfaces a question worth sitting with: if you had been able to model that scenario six months prior — what happens if our top federal client category disappears overnight — what would the portfolio response have looked like? Which initiatives would have been accelerated? Where were resources that could have been reallocated immediately?
-
-Most enterprise risk functions I work with have strong frameworks for project-level risk. What they rarely have is a platform that models risk at the portfolio level — allowing leadership to run "what if" scenarios across the full initiative portfolio and generate a prioritized response plan before the disruption forces a reactive one.
-
-That is a core capability inside Planview. I would welcome the chance to walk you through how firms in complex, project-intensive environments have used it specifically for disruption preparedness at the portfolio level.
-
-Would a call next week work?
-
-[Your name]
-Planview</div>
-        </div>
-        <div class="talk-track" id="tt3">
-          <div class="talk-track-label">Phone Talk Track</div>
-          <div class="talk-section">
-            <div class="talk-section-label">Opening</div>
-            <div class="talk-section-body">"Brendan, this is [name] from Planview. I work with enterprise risk leaders at large consulting and engineering firms. I have a very specific question about how Tetra Tech is thinking about portfolio-level risk after what happened with USAID — is now an okay time?"</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Core Observation</div>
-            <div class="talk-section-body">"What struck me about the USAID situation — and I say this with respect — is that the risk was not a surprise in hindsight. Federal concentration risk was visible in the backlog data. The gap was the ability to model a response scenario in advance: which resources would be redeployed, which initiatives would accelerate, where capacity existed to absorb the shock."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Planview Position</div>
-            <div class="talk-section-body">"Planview has a scenario modeling capability specifically designed for this. You can model portfolio responses to disruption scenarios — changes in funding, client loss, market shifts — and generate a ranked, resource-feasible alternative portfolio within hours, not weeks."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Ask</div>
-            <div class="talk-section-body">"I would like to show you a live example of that capability. Would twenty minutes next week be possible?"</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- EMAIL 4 -->
-      <div class="email-wrapper">
-        <div class="email-header">
-          <div class="email-num">4</div>
-          <div class="email-meta">
-            <div class="email-to">Leslie Shoemaker, PhD &nbsp;|&nbsp; Chief Innovation and Sustainability Officer</div>
-            <div class="email-hook">Entry point: connecting innovation investments to measurable outcomes</div>
-          </div>
-        </div>
-        <div class="email-body">
-          <div class="email-subject">Subject: <span>Measuring the portfolio return on your innovation investments</span></div>
-          <div class="email-content">Leslie,
-
-Your recent posts on portfolio approaches to climate and sustainability investment — and the importance of diversification across mitigation timelines — reflect a level of portfolio thinking that most organizations struggle to apply internally to their own initiative portfolios.
-
-Tetra Tech is investing in a $500M digital systems practice, a set of international expansion programs, and an evolving sustainability capability. The question that almost every Chief Innovation Officer I speak with eventually asks is: how do we know which of these investments is actually delivering against the strategic objectives we set for them? And how do we make those decisions visibly, with data, rather than based on which program has the strongest internal advocate?
-
-Planview is built to answer that question. It connects innovation and strategic initiatives to a value-scoring framework, tracks delivery against defined outcomes, and gives leadership a portfolio-level view of where transformation investment is generating returns and where it is stalling.
-
-Given your public focus on the importance of measurable impact and portfolio diversification — I think the conversation about how those same principles apply inside Tetra Tech's own innovation portfolio could be a valuable one.
-
-Would you be open to a short call to explore that?
-
-[Your name]
-Planview</div>
-        </div>
-        <div class="talk-track" id="tt4">
-          <div class="talk-track-label">Phone Talk Track</div>
-          <div class="talk-section">
-            <div class="talk-section-label">Opening</div>
-            <div class="talk-section-body">"Leslie, this is [name] from Planview. I have followed your writing on portfolio approaches to sustainability investment — I find the thinking genuinely useful. I have one question about how Tetra Tech applies that kind of portfolio discipline internally. Do you have a moment?"</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Core Observation</div>
-            <div class="talk-section-body">"You write compellingly about using portfolio approaches to maximize impact across different timelines and reduce risk through diversification. What I rarely see organizations do well is apply that same rigor internally — to their own transformation initiatives. Most innovation portfolios I look at are actually prioritized by advocacy, not evidence."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Planview Position</div>
-            <div class="talk-section-body">"Planview provides the platform to score initiatives against strategic criteria, track outcomes in real time, and give your leadership team visibility into which investments are generating returns and which ones need to be paused or redirected."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Ask</div>
-            <div class="talk-section-body">"Would a brief conversation about how other innovation leaders have structured this be worthwhile? No obligation — I just think it connects to something you already care deeply about."</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- EMAIL 5 -->
-      <div class="email-wrapper">
-        <div class="email-header">
-          <div class="email-num">5</div>
-          <div class="email-meta">
-            <div class="email-to">Jonathan Weiss &nbsp;|&nbsp; President, Commercial/International Services Group</div>
-            <div class="email-hook">Entry point: fast-growing global group without a portfolio management system</div>
-          </div>
-        </div>
-        <div class="email-body">
-          <div class="email-subject">Subject: <span>Managing a fast-growing global group without losing visibility</span></div>
-          <div class="email-content">Jonathan,
-
-Congratulations on your appointment as President of CIG. You are leading the part of Tetra Tech that carries the most strategic weight right now — the international commercial pivot that the company is counting on to replace the lost federal volume and prove that the portfolio can grow beyond its traditional base.
-
-That is a significant coordination challenge. CIG now includes SAGE Group's automation teams in Australia, water and environmental programs across Europe and the Netherlands, energy projects in multiple geographies, and a growing set of municipal clients in North America. Each operates on different methodologies, cadences, and contract structures.
-
-What I hear from leaders in similar positions is that the biggest hidden risk in a fast-scaling, geographically distributed group is the loss of portfolio visibility. Decisions about where to deploy the next hire, which opportunity to pursue, and which programs to accelerate get made at the local level — and there is no consistent way to see whether those decisions are moving the group's portfolio in the right strategic direction.
-
-Planview provides that visibility layer. It is specifically designed for hybrid, distributed delivery environments and gives group presidents a real-time view of resource deployment, initiative prioritization, and outcome tracking across the full portfolio.
-
-I would value fifteen minutes to share how other commercial services group leaders have used it. Would that be worthwhile?
-
-[Your name]
-Planview</div>
-        </div>
-        <div class="talk-track" id="tt5">
-          <div class="talk-track-label">Phone Talk Track</div>
-          <div class="talk-section">
-            <div class="talk-section-label">Opening</div>
-            <div class="talk-section-body">"Jonathan, I am [name] from Planview. I work with presidents of commercial services groups at large global firms. Congratulations on the new role — I have a specific observation about the challenge you are probably facing right now. Do you have sixty seconds?"</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Core Observation</div>
-            <div class="talk-section-body">"CIG is now carrying the strategic weight of Tetra Tech's international pivot. You have teams in Australia, Europe, North America, and the Middle East, operating across water, energy, environmental, and automation programs. The risk I see in that setup is not delivery quality — it is portfolio visibility. At scale and speed, local prioritization decisions start to diverge from the group's strategic intent."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Planview Position</div>
-            <div class="talk-section-body">"Planview gives group leaders like you a live view of resource deployment, program prioritization, and strategic alignment across every market and methodology. It is built for exactly the kind of distributed, hybrid environment CIG is now running."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Ask</div>
-            <div class="talk-section-body">"Would fifteen minutes to walk through a comparable use case from a global services group be a useful investment of your time?"</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- EMAIL 6 -->
-      <div class="email-wrapper">
-        <div class="email-header">
-          <div class="email-num">6</div>
-          <div class="email-meta">
-            <div class="email-to">Craig Christensen (2nd touch) &nbsp;|&nbsp; SVP &amp; CIO</div>
-            <div class="email-hook">Entry point: Halvik DevOps integration — agile visibility gap</div>
-          </div>
-        </div>
-        <div class="email-body">
-          <div class="email-subject">Subject: <span>600 new agile practitioners — and no portfolio layer above them</span></div>
-          <div class="email-content">Craig,
-
-The Halvik acquisition closed in January. Six hundred professionals delivering agile federal IT programs for NASA, the Department of Transportation, and defense agencies are now part of Tetra Tech.
-
-What that means from an enterprise portfolio standpoint is that you have a substantial new delivery organization operating in a fundamentally different cadence from the engineering programs that have defined Tetra Tech for decades. Agile sprints, DevOps pipelines, and continuous delivery timelines do not surface cleanly in Oracle financial reporting or standard waterfall program reviews.
-
-The question that will become critical as you integrate Halvik is: how does Tetra Tech's executive leadership see what those teams are working on, how their capacity is being used, and whether their priorities align with the broader portfolio strategy — without forcing them back into delivery methodologies that would destroy the value of the acquisition?
-
-That is a problem Planview was designed to solve. Our platform supports agile, waterfall, and hybrid delivery natively, and provides a unified portfolio visibility layer above all of them. Executives get the strategic view they need without disrupting how delivery teams actually work.
-
-Could we find time this month for a focused conversation on the Halvik integration challenge?
-
-[Your name]
-Planview</div>
-        </div>
-        <div class="talk-track" id="tt6">
-          <div class="talk-track-label">Phone Talk Track</div>
-          <div class="talk-section">
-            <div class="talk-section-label">Opening</div>
-            <div class="talk-section-body">"Craig, [name] from Planview again. I sent a note recently about the M&amp;A integration challenge. I want to come at it from a slightly different angle — specifically the Halvik acquisition. Is now okay?"</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Core Observation</div>
-            <div class="talk-section-body">"Halvik is built on agile and DevOps. That is a great capability to add. But it creates an integration challenge that is less visible than the org structure question: how do you make Halvik's delivery work visible to executive leadership alongside traditional Tetra Tech programs, without forcing their teams into a reporting model that breaks what makes them effective?"</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Planview Position</div>
-            <div class="talk-section-body">"Planview handles this by design. Agile teams keep working in their native tools. Planview aggregates the portfolio-level signal — capacity, priorities, outcomes — and presents it in a consistent view for leadership. No one has to change how they work."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Ask</div>
-            <div class="talk-section-body">"Would it be worth exploring this together? I can walk through a comparable integration case in under twenty minutes."</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- EMAIL 7 -->
-      <div class="email-wrapper">
-        <div class="email-header">
-          <div class="email-num">7</div>
-          <div class="email-meta">
-            <div class="email-to">Steven Burdick (2nd touch) &nbsp;|&nbsp; EVP &amp; CFO</div>
-            <div class="email-hook">Entry point: resource protection dynamics / politically shielded initiatives</div>
-          </div>
-        </div>
-        <div class="email-body">
-          <div class="email-subject">Subject: <span>When every project is "critical" — and how to change that</span></div>
-          <div class="email-content">Steven,
-
-There is a dynamic that shows up in every large engineering firm I speak with during a period of portfolio transition. When leadership begins asking which programs to slow down or stop to fund the pivot — every program manager makes the case that their initiative is critical. Politically protected projects survive. High-value but under-advocated programs do not get the resources they need. And the portfolio ends up overcommitted and underperforming.
-
-Given that Tetra Tech is actively reprioritizing its portfolio — shifting from federal to commercial and international, building a digital practice, integrating three new businesses — the risk of "all initiatives are critical" dynamics is high. Without a shared, objective scoring methodology, those decisions default to whoever is most persuasive in the room.
-
-Planview breaks that pattern. It replaces advocacy-based prioritization with a value-scoring framework that everyone has agreed to in advance. Every initiative is evaluated against the same criteria — strategic alignment, financial return, resource feasibility. Trade-off conversations become structured and repeatable rather than political.
-
-I have seen this shift change not just the quality of portfolio decisions but the credibility of the CFO's office in the eyes of the business. Would it be worth thirty minutes to explore whether that is relevant to where Tetra Tech is right now?
-
-[Your name]
-Planview</div>
-        </div>
-        <div class="talk-track" id="tt7">
-          <div class="talk-track-label">Phone Talk Track</div>
-          <div class="talk-section">
-            <div class="talk-section-label">Opening</div>
-            <div class="talk-section-body">"Steven, [name] from Planview. I want to raise something specific about portfolio governance dynamics during a period of transition — something I think is directly relevant to where Tetra Tech is. Do you have a moment?"</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Core Observation</div>
-            <div class="talk-section-body">"When a company is reprioritizing its portfolio — as Tetra Tech clearly is right now — the single most common failure mode is not a bad strategy. It is that resource reallocation gets blocked by protected initiatives. Every program manager argues their project is critical. Without a structured scoring framework, the CFO and executive team are refereeing advocacy contests rather than making evidence-based trade-offs."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Planview Position</div>
-            <div class="talk-section-body">"Planview creates a shared language for those decisions. Every initiative gets scored on the same criteria. Trade-off conversations become structured. And the decisions that come out of them hold up under scrutiny — internally and externally."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Ask</div>
-            <div class="talk-section-body">"I would like to share a specific example of how a firm in a similar transition used this. Would thirty minutes work?"</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- EMAIL 8 -->
-      <div class="email-wrapper">
-        <div class="email-header">
-          <div class="email-num">8</div>
-          <div class="email-meta">
-            <div class="email-to">Daniel Archer &nbsp;|&nbsp; Director, Government Services / Business Development</div>
-            <div class="email-hook">Entry point: AI-powered BD thinking / champion development</div>
-          </div>
-        </div>
-        <div class="email-body">
-          <div class="email-subject">Subject: <span>Your Tech 1000 win — and a conversation about portfolio intelligence</span></div>
-          <div class="email-content">Daniel,
-
-I came across the announcement about your team winning Tetra Tech's Tech 1000 Challenge for an AI-powered business development tool. The fact that you built something that is now being evaluated for adoption across the company says a great deal about how you think about applying technology to strategic problems.
-
-That instinct — using intelligent systems to make better, faster prioritization decisions — connects directly to something I work on at Planview.
-
-Most of the government services organizations I work with are making program pursuit and portfolio prioritization decisions from spreadsheets and status reports that are always out of date. Your BD innovation solves part of that. But there is a layer above BD pipeline: the enterprise portfolio of programs that are already under contract, competing for the same technical staff, and influencing each other's outcomes in ways that are rarely visible.
-
-Planview is built for that layer. I think the way you think about intelligent tools for strategic decisions makes you exactly the kind of person who would have a strong view on whether Planview's capability is relevant for how Tetra Tech manages its government services portfolio.
-
-Would you be open to a peer-level conversation about it? I am not here to pitch — I genuinely want to understand how a technically sophisticated firm like Tetra Tech approaches this problem.
-
-[Your name]
-Planview</div>
-        </div>
-        <div class="talk-track" id="tt8">
-          <div class="talk-track-label">Phone Talk Track</div>
-          <div class="talk-section">
-            <div class="talk-section-label">Opening</div>
-            <div class="talk-section-body">"Daniel, this is [name] from Planview. I saw the write-up on your Tech 1000 win — that AI BD tool sounds like genuinely smart thinking. I wanted to reach out because what you are building at the BD layer connects to something I work on at the portfolio level. Is now a good time?"</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Core Observation</div>
-            <div class="talk-section-body">"What struck me about your tool is that it is applying intelligence to prioritization — figuring out where to focus effort. That is exactly what Planview does at the enterprise portfolio level. The challenge most government services groups face is that once a program is won, visibility into how it fits the broader portfolio — resource needs, dependencies, strategic return — largely disappears into spreadsheets and status calls."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Planview Position</div>
-            <div class="talk-section-body">"Planview closes that gap — giving leaders like you the same kind of intelligent, data-driven view of the live portfolio that your BD tool brings to pursuit decisions."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Ask</div>
-            <div class="talk-section-body">"Would you be open to a brief peer-level conversation? I am curious how Tetra Tech GSG thinks about this problem today — and I will share what I have seen work elsewhere."</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- EMAIL 9 -->
-      <div class="email-wrapper">
-        <div class="email-header">
-          <div class="email-num">9</div>
-          <div class="email-meta">
-            <div class="email-to">Brendan O'Rourke (2nd touch) &nbsp;|&nbsp; SVP, Enterprise Risk</div>
-            <div class="email-hook">Entry point: concentration risk visibility / portfolio stress testing</div>
-          </div>
-        </div>
-        <div class="email-body">
-          <div class="email-subject">Subject: <span>Portfolio concentration risk — seeing it before it becomes an earnings event</span></div>
-          <div class="email-content">Brendan,
-
-Following up on my earlier note. I want to put a specific idea on the table.
-
-Tetra Tech's USAID situation was, in hindsight, a concentration risk event that the existing risk framework did not surface with enough urgency before it became material. That is not a criticism — it is almost universally true that enterprise risk frameworks are strong at the project level and weak at the portfolio level.
-
-What I mean by portfolio-level risk is this: the ability to see, in real time, how much of your strategic capacity is committed to any single client category, geography, or initiative type — and to model what happens to the organization's delivery capacity and financial trajectory if that concentration is disrupted.
-
-Planview has a portfolio analytics capability that allows risk leaders to do exactly that. You can define concentration thresholds, set scenario parameters, and generate a ranked alternative portfolio in response to a simulated disruption. The output is a resource-feasible pivot plan — not a conceptual slide, but an actual prioritized list of where to redeploy people and investment.
-
-That kind of preparation would have changed the shape of Tetra Tech's Q2 2025 response significantly. I would welcome a conversation about whether this is worth exploring further.
-
-[Your name]
-Planview</div>
-        </div>
-        <div class="talk-track" id="tt9">
-          <div class="talk-track-label">Phone Talk Track</div>
-          <div class="talk-section">
-            <div class="talk-section-label">Opening</div>
-            <div class="talk-section-body">"Brendan, [name] from Planview. I sent a note a couple of weeks ago about portfolio-level scenario planning. I want to come at it from a slightly different angle today — the concentration risk angle specifically. Is now a reasonable moment?"</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Core Observation</div>
-            <div class="talk-section-body">"Most enterprise risk frameworks I see are strong at the project level — risks within a specific program. Where they are consistently weak is at the portfolio level: the ability to see cross-portfolio concentration before it becomes a material event. The USAID situation is a textbook example. The concentration was visible in the backlog data. What was missing was a system that flagged it with urgency and produced a prepared response scenario."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Planview Position</div>
-            <div class="talk-section-body">"Planview has portfolio analytics specifically designed for this: concentration monitoring, scenario modeling, and the ability to generate a feasible alternative portfolio as a prepared response — not a reactive scramble."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Ask</div>
-            <div class="talk-section-body">"Would a twenty-minute demonstration of that specific capability be valuable for you? I can walk through a case that looks very similar to what Tetra Tech just navigated."</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- EMAIL 10 -->
-      <div class="email-wrapper">
-        <div class="email-header">
-          <div class="email-num">10</div>
-          <div class="email-meta">
-            <div class="email-to">Leslie Shoemaker (2nd touch) &nbsp;|&nbsp; Chief Innovation Officer</div>
-            <div class="email-hook">Entry point: digital practice $500M target / outcome tracking for transformation</div>
-          </div>
-        </div>
-        <div class="email-body">
-          <div class="email-subject">Subject: <span>A $500M digital practice target — and how you will know you are on track</span></div>
-          <div class="email-content">Leslie,
-
-Tetra Tech has publicly committed to building a $500M annual revenue digital systems practice by 2030. That is an ambitious, multi-year transformation program that spans multiple acquisitions, technology investments, market development efforts, and talent strategies.
-
-The question I find most chief innovation officers cannot answer with confidence is: at any given point in time, which of our active transformation initiatives are on track to contribute to that target — and which ones are consuming resources without generating the strategic return we projected?
-
-That is not an execution question. It is a portfolio visibility question. Most transformation portfolios I review are tracked through status reporting and milestone dashboards. Those tell you what happened. They do not tell you whether the portfolio as a whole is structured to achieve the strategic objective it was designed for.
-
-Planview closes that gap by connecting each initiative to a defined set of strategic outcomes and tracking portfolio progress against the actual target — not just against project plans. When something is not contributing, it surfaces early enough to be redirected rather than discovered at year-end.
-
-For a $500M target over five years, that kind of outcome visibility is not a nice-to-have — it is what separates transformation programs that succeed from those that produce activity without results.
-
-Would a focused conversation about how firms structure outcome-connected transformation portfolios be useful at this point in Tetra Tech's journey?
-
-[Your name]
-Planview</div>
-        </div>
-        <div class="talk-track" id="tt10">
-          <div class="talk-track-label">Phone Talk Track</div>
-          <div class="talk-section">
-            <div class="talk-section-label">Opening</div>
-            <div class="talk-section-body">"Leslie, [name] from Planview. I want to ask you one very specific question about the digital practice target — do you have sixty seconds?"</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Core Observation</div>
-            <div class="talk-section-body">"Tetra Tech has set a $500M digital practice target by 2030. That is a portfolio of acquisition integrations, organic investments, talent programs, and market development efforts — all of which need to add up to that number. The question I would put to any innovation leader is: how are you tracking whether the portfolio as it exists today is actually structured to achieve that outcome? Most firms I see are tracking activities, not outcomes."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Planview Position</div>
-            <div class="talk-section-body">"Planview connects every initiative in that portfolio to the strategic outcome it is meant to deliver — the $500M target — and tracks progress in real time. When something is off track, it surfaces it early enough to correct. That is a fundamentally different capability from status reporting."</div>
-          </div>
-          <div class="talk-section">
-            <div class="talk-section-label">Ask</div>
-            <div class="talk-section-body">"Given where Tetra Tech is in that journey, would a thirty-minute conversation about outcome-connected portfolio management be worth your time? I can share how similar transformation programs have structured it."</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <p style="font-size:11px;color:#aaa;text-align:center;padding:16px 0;">Prepared by Planview Account Executive &nbsp;|&nbsp; Tetra Tech (NASDAQ: TTEK) &nbsp;|&nbsp; April 2026 &nbsp;|&nbsp; Confidential</p>
+  <div class="cover-wave">&#9670;</div>
 </div>
 
+<!-- WINBACK BANNER -->
+<div class="winback-banner">
+  <div class="wb-icon">&#8635;</div>
+  <div>
+    <div class="wb-title">Winback Context from Salesforce</div>
+    <div class="wb-body">Tetra Tech was a <strong>paying Planview customer for 6 consecutive years (2017 to 2023)</strong>, renewing AgilePlace (Select Edition, then Scaled Teams with OKR) annually at 5 seats. The 2023 renewal was <strong>lost in September 2023</strong> (owner at churn: Ankitha Manjunath, now inactive). No re-engagement activity has been logged since. The primary internal contacts were <strong>Ted Assur</strong> (Director, Enterprise Operations) and <strong>Craig Christensen</strong> (SVP/CIO). This is not a cold outreach — it is a structured winback with a known relationship, a known product footprint, and a company that has changed dramatically since they left.</div>
+  </div>
+</div>
+
+<!-- SECTION 1 -->
+<div class="section">
+  <div class="section-head"><div class="section-num">1</div><div class="section-title">Strategic Initiatives, Leadership Changes &amp; Business Risks</div></div>
+  <div class="section-body">
+    <p style="font-size:13px;color:#515151;margin-bottom:18px;line-height:1.6">Tetra Tech is a $5B global consulting and engineering firm specializing in water, environment, and sustainable infrastructure. As of February 2026 there is a new CEO, a compressed backlog following a major federal revenue shock, and an aggressive pivot toward digital services and commercial markets — all of which create fresh urgency around portfolio prioritization, resource deployment, and enterprise visibility.</p>
+
+    <p class="section-sub">Named Strategic Initiatives</p>
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-badge badge-digital">Digital</span>
+        <div class="card-title">Digital Automation &amp; AI Expansion (Target: $500M by 2030)</div>
+        <div class="card-body">Building a $500M digital practice via SAGE Group (AI-driven water automation, 2025), LS Technologies (federal IT, 2024), and Halvik (agile DevOps, January 2026). Focus areas: AI, automation, cybersecurity, cloud analytics, and smart infrastructure.</div>
+        <a class="card-link" href="https://smartwatermagazine.com/news/smart-water-magazine/tetra-tech-expand-digital-automation-capabilities-acquisition-sage-group" target="_blank">Source: Smart Water Magazine</a>
+      </div>
+      <div class="card">
+        <span class="card-badge badge-pivot">Pivot</span>
+        <div class="card-title">Federal Revenue Diversification</div>
+        <div class="card-body">DOGE-driven USAID terminations wiped ~$227M in quarterly revenue and triggered a $92.4M goodwill impairment. Leadership is actively rebalancing toward Army Corps, AFCEC, state and local water, and international markets.</div>
+        <a class="card-link" href="https://labusinessjournal.com/featured/tetra-tech-takes-a-hit/" target="_blank">Source: LA Business Journal</a>
+      </div>
+      <div class="card">
+        <span class="card-badge badge-growth">Growth</span>
+        <div class="card-title">Leading with Science&reg; — Global Expansion</div>
+        <div class="card-body">Major international wins in the UK, Netherlands, and Australia are compensating for lost federal volume. The company is building a resilient 30,000-person global platform with diversified revenue across water, energy, and digital sectors.</div>
+        <a class="card-link" href="https://investor.tetratech.com/news/news-details/2025/Tetra-Tech-Announces-Leadership-Appointments/default.aspx" target="_blank">Source: Tetra Tech IR</a>
+      </div>
+      <div class="card">
+        <span class="card-badge badge-talent">Leadership</span>
+        <div class="card-title">CEO Succession: Roger Argus (effective Feb 19, 2026)</div>
+        <div class="card-body">Roger Argus became CEO after 30+ years at the company. Dan Batrack moved to Executive Chairman. Jonathan Weiss appointed President of Commercial/International Services. New CEO transitions create a natural window for strategic platform re-evaluations.</div>
+        <a class="card-link" href="https://www.businesswire.com/news/home/20260106425979/en/Tetra-Tech-to-Appoint-Roger-Argus-as-Chief-Executive-Officer-Dan-Batrack-to-Become-Executive-Chairman" target="_blank">Source: Business Wire</a>
+      </div>
+      <div class="card">
+        <span class="card-badge badge-growth">M&amp;A</span>
+        <div class="card-title">Strategic Acquisition Program</div>
+        <div class="card-body">$80M in revenue attributed to recent acquisitions in FY2025. Three technology firms acquired in 18 months — each bringing different delivery methodologies. Board authorized a $500M stock repurchase program alongside continued deal-making.</div>
+        <a class="card-link" href="https://investor.tetratech.com/news/news-details/2026/Tetra-Tech-Acquires-Halvik-Corp/default.aspx" target="_blank">Source: Tetra Tech IR</a>
+      </div>
+      <div class="card">
+        <span class="card-badge badge-risk">Risk Response</span>
+        <div class="card-title">Backlog Recovery &amp; Portfolio Reprioritization</div>
+        <div class="card-body">Backlog declined 4.5% sequentially to $3.95B after USAID de-obligations. Leadership is actively managing which programs to accelerate, pause, or pivot — a live portfolio reprioritization event happening in real time with no unified platform to support it.</div>
+        <a class="card-link" href="https://www.panabee.com/news/tetra-tech-earnings-q4-2025-report" target="_blank">Source: Panabee Earnings Analysis</a>
+      </div>
+    </div>
+
+    <p class="section-sub">Business Risks &amp; Pain Points</p>
+    <div class="pain-list">
+      <div class="pain-row">
+        <div class="pain-icon pi-red">!</div>
+        <div class="pain-content">
+          <div class="pt">Federal concentration risk — USAID collapse exposed structural over-reliance</div>
+          <div class="pd">A single executive order wiped 80% of USAID/State Dept. revenue. No enterprise system existed to provide early warning or a rapid, resource-feasible reprioritization response. The company scrambled reactively when a proactive scenario plan would have changed the outcome.</div>
+        </div>
+      </div>
+      <div class="pain-row">
+        <div class="pain-icon pi-orange">~</div>
+        <div class="pain-content">
+          <div class="pt">Three acquisitions, three delivery methodologies — no unified portfolio layer</div>
+          <div class="pd">SAGE Group (automation), LS Technologies (federal IT), and Halvik (agile/DevOps) operate on fundamentally different delivery models from Tetra Tech's traditional engineering programs. Without a unified portfolio platform, resource visibility across waterfall, agile, and hybrid delivery is fragmented and invisible at the executive level.</div>
+        </div>
+      </div>
+      <div class="pain-row">
+        <div class="pain-icon pi-steel">?</div>
+        <div class="pain-content">
+          <div class="pt">New CEO within 90 days — active strategic re-evaluation window</div>
+          <div class="pd">Roger Argus is two months into the CEO role. New CEOs typically conduct portfolio reviews within their first 90 to 180 days. This is the highest-value window to re-enter with a platform that gives leadership real-time portfolio visibility and defensible, data-driven prioritization.</div>
+        </div>
+      </div>
+      <div class="pain-row">
+        <div class="pain-icon pi-red">$</div>
+        <div class="pain-content">
+          <div class="pt">Analyst scrutiny on backlog quality — credibility gap at board level</div>
+          <div class="pd">Analysts have explicitly flagged that new contract wins are not yet replacing lost federal volume. Without a structured portfolio governance framework, every investment decision is vulnerable to challenge. The CFO needs a defensible, auditable basis for capital allocation — not spreadsheet consolidation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="risk-grid">
+      <div class="risk-card risk-high"><div class="risk-level">High Risk</div><div class="risk-name">Policy-Driven Revenue Shock Recurrence</div><div class="risk-desc">Federal spending uncertainty continues. Further contract terminations or funding freezes could repeat the USAID event in other federal segments.</div></div>
+      <div class="risk-card risk-high"><div class="risk-level">High Risk</div><div class="risk-name">M&amp;A Integration Execution</div><div class="risk-desc">Three tech acquisitions in 18 months with different delivery cultures. Without unified governance, synergies stall and resource conflicts multiply invisibly.</div></div>
+      <div class="risk-card risk-med"><div class="risk-level">Medium Risk</div><div class="risk-name">$500M Digital Practice ROI</div><div class="risk-desc">Ambitious 2030 target across multiple acquisitions and investments. Without outcome-connected portfolio tracking, activity will be mistaken for progress.</div></div>
+      <div class="risk-card risk-med"><div class="risk-level">Medium Risk</div><div class="risk-name">International Margin &amp; Compliance</div><div class="risk-desc">International pivot introduces FCPA exposure and currency headwinds. Portfolio resource visibility across geographies is critical but currently absent.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section">
+  <div class="section-head"><div class="section-num">2</div><div class="section-title">Key Stakeholders — CRM Contacts, Decision-Makers &amp; Champions</div></div>
+  <div class="section-body">
+    <p style="font-size:13px;color:#515151;margin-bottom:6px;line-height:1.6">Salesforce shows 30+ contacts across two Tetra Tech account records. Cards marked <span style="background:#3B6D11;color:white;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;">IN CRM</span> are verified contacts with emails already in your system.</p>
+
+    <div style="background:#f0f8f0;border:1px solid #3B6D11;border-radius:8px;padding:14px 18px;margin-bottom:18px">
+      <div style="font-size:11px;font-weight:700;color:#3B6D11;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Salesforce Account History Summary</div>
+      <div style="font-size:13px;color:#333;line-height:1.6">
+        Account owner: <strong>Kush Parikh</strong> &nbsp;|&nbsp; Type: <strong>Former Customer</strong> &nbsp;|&nbsp; Last activity logged: <strong>March 27, 2023</strong><br>
+        Primary contacts on record: Ted Assur (Director, Enterprise Operations), Mike Clennon, Craig Christensen (SVP/CIO)<br>
+        Director-level contacts in CRM: Melissa Studer, Derik Tran, Michael Kuhn, Mozein Sajjad, and 20+ additional Directors of Enterprise Operations
+      </div>
+    </div>
+
+    <div class="leader-grid">
+
+      <div class="leader-card crm-contact">
+        <div class="leader-head">
+          <div class="avatar av-steel">TA</div>
+          <div>
+            <div class="leader-name">Ted Assur <span class="crm-badge">IN CRM</span></div>
+            <div class="leader-title">Director, Enterprise Operations</div>
+            <span class="maturity-tag mat-crm">Primary Contact on Record</span>
+          </div>
+        </div>
+        <div class="leader-notes">Ted Assur was the primary named contact during Planview's active relationship with Tetra Tech (2017 to 2023). His "Director of Enterprise Operations" title suggests involvement in both IT governance and operational delivery. Last activity logged June 2022. He is the warmest re-entry point — there is a prior relationship to reference, and the account history gives you credibility from the first sentence.</div>
+        <a class="leader-email" href="mailto:ted.assur@tetratech.com">ted.assur@tetratech.com &nbsp;|&nbsp; 802-495-0301</a>
+      </div>
+
+      <div class="leader-card crm-contact">
+        <div class="leader-head">
+          <div class="avatar av-steel">CC</div>
+          <div>
+            <div class="leader-name">Craig Christensen <span class="crm-badge">IN CRM</span></div>
+            <div class="leader-title">SVP &amp; Chief Information Officer</div>
+            <span class="maturity-tag mat-high">High Maturity Target</span>
+          </div>
+        </div>
+        <div class="leader-notes">CIO since 2002 — responsible for enterprise IT, Oracle ERP, and shared services. Now overseeing integration of SAGE Group, LS Technologies, and Halvik. He appears twice in CRM under two different Tetra Tech account records, indicating a long history of contact. His last recorded activity was July 2020. The M&A integration challenge is tailor-made for a CIO conversation.</div>
+        <a class="leader-email" href="mailto:craig.christensen@tetratech.com">craig.christensen@tetratech.com &nbsp;|&nbsp; (626) 470-2578</a>
+        <a class="leader-link" href="https://www.tetratech.com/about/management-team/craig-l-christensen/" target="_blank">Bio: tetratech.com</a>
+      </div>
+
+      <div class="leader-card crm-contact">
+        <div class="leader-head">
+          <div class="avatar av-red">DT</div>
+          <div>
+            <div class="leader-name">Derik Tran <span class="crm-badge">IN CRM</span></div>
+            <div class="leader-title">Director of Project Delivery</div>
+            <span class="maturity-tag mat-low">Champion Target</span>
+          </div>
+        </div>
+        <div class="leader-notes">Derik Tran's title — Director of Project Delivery — makes him the most natural Planview champion in the organization. He owns the delivery layer that Planview directly supports. Last activity logged November 2016, but his role has direct budget influence over project management tooling. The AgilePlace history gives you a conversation opener about what worked and what didn't.</div>
+        <a class="leader-email" href="mailto:derik.tran@tetratech.com">derik.tran@tetratech.com &nbsp;|&nbsp; (626) 470-2563</a>
+      </div>
+
+      <div class="leader-card crm-contact">
+        <div class="leader-head">
+          <div class="avatar av-dark">MK</div>
+          <div>
+            <div class="leader-name">Michael Kuhn <span class="crm-badge">IN CRM</span></div>
+            <div class="leader-title">Director, Technology Services</div>
+            <span class="maturity-tag mat-low">Low-to-Mid Maturity</span>
+          </div>
+        </div>
+        <div class="leader-notes">Director of Technology Services — sits at the intersection of IT operations and delivery technology decisions. Last activity April 2018. Given the three recent tech acquisitions, his role is now significantly more complex. He is likely managing tool sprawl across the acquired teams and has a direct pain point around unifying delivery visibility.</div>
+        <a class="leader-email" href="mailto:michael.kuhn@tetratech.com">michael.kuhn@tetratech.com &nbsp;|&nbsp; +1 (412) 921-8942</a>
+      </div>
+
+      <div class="leader-card">
+        <div class="leader-head">
+          <div class="avatar av-red">SB</div>
+          <div>
+            <div class="leader-name">Steven M. Burdick</div>
+            <div class="leader-title">EVP &amp; Chief Financial Officer</div>
+            <span class="maturity-tag mat-high">High Maturity Target</span>
+          </div>
+        </div>
+        <div class="leader-notes">EVP/CFO since 2011. Following the USAID revenue shock and $92.4M goodwill impairment, Burdick is directly accountable for rebuilding earnings credibility. Analysts are scrutinizing backlog quality. He needs a defensible, quantitative basis for portfolio investment decisions — not advocacy-based prioritization. Not yet in CRM as a direct contact.</div>
+        <a class="leader-link" href="https://www.tetratech.com/about/management-team/steven-m-burdick/" target="_blank">Bio: tetratech.com</a>
+      </div>
+
+      <div class="leader-card crm-contact">
+        <div class="leader-head">
+          <div class="avatar av-dark">MS</div>
+          <div>
+            <div class="leader-name">Melissa Studer <span class="crm-badge">IN CRM</span></div>
+            <div class="leader-title">Director, Enterprise Operations</div>
+            <span class="maturity-tag mat-low">Influencer</span>
+          </div>
+        </div>
+        <div class="leader-notes">One of the most recently modified contacts in Salesforce (October 2025). Enterprise Operations Directors at Tetra Tech appear to be key operational leaders who manage project delivery and tool governance at the division level. Melissa is likely an influencer in technology adoption decisions across her operating unit.</div>
+        <a class="leader-email" href="mailto:melissa.studer@tetratech.com">melissa.studer@tetratech.com &nbsp;|&nbsp; (626) 351-4664</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section">
+  <div class="section-head"><div class="section-num">3</div><div class="section-title">Salesforce Relationship History &amp; Current Tech Stack</div></div>
+  <div class="section-body">
+
+    <p class="section-sub">Planview Relationship Timeline (from Salesforce)</p>
+    <div class="sf-timeline">
+      <div class="sf-row"><div class="sf-dot dot-won"></div><div class="sf-year">2017</div><div class="sf-detail">New logo win — AgilePlace Select Edition, 5 seats, $1,140/year. Owner: Ansley Allen. <span>First purchase in our system.</span></div></div>
+      <div class="sf-row"><div class="sf-dot dot-won"></div><div class="sf-year">2018</div><div class="sf-detail">Renewed — AgilePlace Select Edition, 5 seats, $1,140/year. Owner: Ansley Allen. <span>Stable renewal, no expansion.</span></div></div>
+      <div class="sf-row"><div class="sf-dot dot-won"></div><div class="sf-year">2019</div><div class="sf-detail">Renewed — AgilePlace Select Edition, 5 seats, $1,140/year. Owner: Heather Seay. <span>Note logged Nov 2018: "Reached out to Ted as LK account owner to understand use case and upside opportunity."</span></div></div>
+      <div class="sf-row"><div class="sf-dot dot-won"></div><div class="sf-year">2020</div><div class="sf-detail">Renewed — upgraded to AgilePlace for Scaled Teams (incl. OKR), 5 seats, $1,197/year. <span>Product upgrade suggests maturing agile adoption.</span></div></div>
+      <div class="sf-row"><div class="sf-dot dot-won"></div><div class="sf-year">2021</div><div class="sf-detail">Renewed — AgilePlace for Scaled Teams, 5 seats, $1,197/year. Owner: Heather Seay. <span>Consistent usage across 5 teams.</span></div></div>
+      <div class="sf-row"><div class="sf-dot dot-won"></div><div class="sf-year">2022</div><div class="sf-detail">Renewed — AgilePlace for Scaled Teams, 5 seats, $1,260/year. Owner: Shruthi MS. <span>Price increase absorbed — still renewing. Last activity: June 2022.</span></div></div>
+      <div class="sf-row"><div class="sf-dot dot-lost"></div><div class="sf-year">2023</div><div class="sf-detail">Renewal lost — September 24, 2023. Owner: Ankitha Manjunath (now inactive). $1,260. No churn reason logged, no notes. <span>No re-engagement since.</span></div></div>
+      <div class="sf-row"><div class="sf-dot dot-note"></div><div class="sf-year">2026</div><div class="sf-detail"><strong>Today</strong> — Kush Parikh is account owner. No activity since March 2023. Company has transformed significantly since churn. <span>Winback window is open.</span></div></div>
+    </div>
+
+    <p class="section-sub" style="margin-top:20px">What Changed Since They Left (2023 to 2026)</p>
+    <p style="font-size:13px;color:#515151;line-height:1.6;margin-bottom:16px">The Tetra Tech that churned AgilePlace in 2023 was a predominantly U.S. federal firm with a small agile practice. The Tetra Tech of 2026 is structurally different — and the platform needs that drove the 2023 decision have fundamentally changed:</p>
+    <div class="card-grid">
+      <div class="card"><div class="card-title" style="color:var(--red)">Then (2023)</div><div class="card-body">5-seat AgilePlace deployment. Small, isolated agile team. Federal-heavy revenue base. Dan Batrack as long-tenure CEO. Stable, predictable portfolio.</div></div>
+      <div class="card"><div class="card-title" style="color:#3B6D11">Now (2026)</div><div class="card-body">Three acquired agile/digital firms with hundreds of practitioners. New CEO Roger Argus 60 days in. $227M federal revenue shock. Fragmented tool landscape. Active portfolio reprioritization underway.</div></div>
+    </div>
+
+    <p class="section-sub">Current Technology Landscape</p>
+    <div class="pain-list">
+      <div class="tool-row"><div class="tool-name">Oracle ERP</div><div class="tool-evidence">Multiple job postings reference an "Oracle-based environment" for project initiation, cost tracking, and financial approvals. Core financial system — strong on accounting, weak on strategic portfolio prioritization and scenario planning.</div><span class="tool-signal sig-confirmed">Confirmed Active</span></div>
+      <div class="tool-row"><div class="tool-name">Microsoft Teams / SharePoint</div><div class="tool-evidence">Tetra Tech employees cite Microsoft Teams as the primary scheduling and coordination tool. SharePoint referenced in job postings for document management. Collaboration infrastructure but not a portfolio platform.</div><span class="tool-signal sig-confirmed">Confirmed Active</span></div>
+      <div class="tool-row"><div class="tool-name">Microsoft Power BI</div><div class="tool-evidence">BridgeNet International (a Tetra Tech subsidiary) lists Power BI as active tech stack per LeadIQ. Reporting happens downstream of execution — not integrated into portfolio decision-making.</div><span class="tool-signal sig-confirmed">Confirmed (Subsidiary)</span></div>
+      <div class="tool-row"><div class="tool-name">Jira / Agile tooling (Halvik, LS Tech)</div><div class="tool-evidence">Halvik Corp — acquired January 2026 — is explicitly built on agile and DevOps principles. LS Technologies operates in agile federal IT environments. These acquired teams run on fundamentally different tooling than Tetra Tech's traditional engineering programs.</div><span class="tool-signal sig-confirmed">Confirmed (Acquired Units)</span></div>
+      <div class="tool-row"><div class="tool-name">Tetra Tech Delta (proprietary)</div><div class="tool-evidence">Tetra Tech references its internal Delta suite of technologies for defense and environmental programs. Proprietary tooling creates additional siloing and is incompatible with enterprise portfolio governance.</div><span class="tool-signal sig-confirmed">Confirmed Active</span></div>
+      <div class="tool-row"><div class="tool-name">Smartsheet (likely)</div><div class="tool-evidence">Dominant tool in the A&E and government consulting sector for program-level reporting. Probable at the PMO layer given company profile and size. Does not provide strategic portfolio trade-off capability at the enterprise level.</div><span class="tool-signal sig-likely">Likely Active</span></div>
+    </div>
+
+    <div class="sprawl-box">
+      <div class="sprawl-label">Tool Sprawl Implication</div>
+      <div class="sprawl-body">Tetra Tech is running Oracle for financials, Microsoft for collaboration, Jira/agile tooling in acquired units, proprietary Delta tools in delivery, and likely Smartsheet at the PMO layer. There is no unified strategic portfolio layer. The USAID shock made this structurally visible: leadership could not rapidly model alternatives or reassign resources because no integrated portfolio system existed to support that decision. This is the core Planview entry point.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section">
+  <div class="section-head"><div class="section-num">4</div><div class="section-title">Planview Value Hypothesis — Winback + Expansion</div></div>
+  <div class="section-body">
+    <div class="hypothesis-box">
+      <div class="hyp-label">Core Value Hypothesis</div>
+      <div class="hyp-title">Tetra Tech left Planview with a 5-seat agile tool. They need to come back for an <span>enterprise portfolio platform.</span></div>
+      <div class="hyp-body">In 2023, Tetra Tech churned a modest AgilePlace deployment — 5 seats, one team, $1,260/year. No churn reason was logged. The product fit was narrow. Today, the situation is structurally different: three acquisitions have introduced hundreds of agile and DevOps practitioners operating without a unified portfolio layer; a $227M federal revenue shock has exposed the absence of scenario planning and dynamic reprioritization capability; and a new CEO is 60 days into his tenure with every incentive to establish a modern operating rhythm. The conversation is no longer about AgilePlace. It is about Planview Portfolios — connecting strategy to execution across Tetra Tech's entire $5B portfolio, with scenario modeling, value-based prioritization, and unified visibility across every delivery method the company now runs.</div>
+      <div class="hyp-pillars">
+        <div class="hyp-pillar">
+          <div class="hyp-pillar-title">From AgilePlace to Portfolios</div>
+          <div class="hyp-pillar-body">The 2017 entry point was a tactical agile board tool. The 2026 re-entry is a strategic platform conversation — SPM and PPM across the full enterprise portfolio including digital, water, federal, and international programs.</div>
+        </div>
+        <div class="hyp-pillar">
+          <div class="hyp-pillar-title">Scenario Planning for Disruption</div>
+          <div class="hyp-pillar-body">Planview's dynamic scenario modeling gives leadership a modeled portfolio response to disruption scenarios within hours — not weeks of manual reconstruction. Directly addresses the USAID shock lesson.</div>
+        </div>
+        <div class="hyp-pillar">
+          <div class="hyp-pillar-title">Unified Multi-Method Visibility</div>
+          <div class="hyp-pillar-body">Planview supports agile, waterfall, and hybrid delivery natively. Halvik's DevOps teams, SAGE Group's automation programs, and traditional engineering projects all surface in a single portfolio view without changing how teams work.</div>
+        </div>
+        <div class="hyp-pillar">
+          <div class="hyp-pillar-title">Value-Based Prioritization</div>
+          <div class="hyp-pillar-body">Replaces advocacy-based project decisions with agreed scoring criteria. Every initiative ranks against the same framework — giving the CFO a defensible, auditable basis for capital allocation under analyst scrutiny.</div>
+        </div>
+      </div>
+      <div class="diff-callout">
+        <div class="diff-label">Planview Products Most Relevant to Tetra Tech</div>
+        <div class="diff-body"><strong>Portfolios (2026)</strong> — enterprise SPM/PPM with scenario modeling, value-based prioritization, and resource management. The primary expansion product beyond AgilePlace. <strong>AgilePlace for Scaled Teams</strong> — the product they already know and used for 6 years, now significantly enhanced. <strong>Planview Advisor</strong> — AI-powered portfolio analytics and benchmarking to support the CFO and CIO with data-driven governance narratives. <strong>Planview Anvi</strong> — AI capability layer across the portfolio platform. These four products together map directly to Tetra Tech's four most urgent problems: integration chaos, reprioritization speed, board credibility, and digital practice ROI tracking.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section">
+  <div class="section-head"><div class="section-num">5</div><div class="section-title">Outreach Playbook — 10 Personalized Emails &amp; Talk Tracks</div></div>
+  <div class="section-body">
+    <p style="font-size:13px;color:#515151;margin-bottom:8px;line-height:1.6">Every message below is built on the winback context from Salesforce. No two messages share the same structure, hook, or Planview differentiator. Click the tab to toggle between the email and phone talk track. All contacts with emails marked are already in your CRM.</p>
+
+    <div style="background:#f0f8f0;border:1px solid #3B6D11;border-radius:8px;padding:12px 18px;margin-bottom:20px;font-size:13px;color:#333;line-height:1.6">
+      <strong style="color:#3B6D11">Winback framing note:</strong> The most powerful opener for this account is the prior relationship. You know who they are, what they bought, and that they have changed significantly since they left. Use that. Do not treat these as cold outreach — they are structured re-engagements with informed context.
+    </div>
+
+
+    <!-- EMAIL 1 -->
+    <div class="email-wrapper">
+      <div class="email-header">
+        <div class="email-num">1</div>
+        <div class="email-meta">
+          <div class="email-to">Ted Assur &nbsp;|&nbsp; Director, Enterprise Operations <span style="font-size:10px;background:#3B6D11;color:white;padding:2px 6px;border-radius:3px;margin-left:6px">CRM CONTACT</span></div>
+          <div class="email-hook">Entry: Prior relationship reactivation — warmest re-entry point in the account</div>
+        </div>
+      </div>
+      <div class="email-body">
+        <div class="email-subject">Subject: <span>Picking up where Tetra Tech and Planview left off — a lot has changed</span></div>
+        <div class="email-content">Ted,
+
+You may remember working with us at Planview a few years back on the AgilePlace deployment. I am reaching back out because a lot has changed at Tetra Tech since 2023 — and I think the conversation we should be having now is fundamentally different from the one we were having then.
+
+When Tetra Tech was using AgilePlace, the context was a focused agile team deployment. What I see now is a company managing three newly acquired technology businesses with very different delivery methods, actively reprioritizing its portfolio after a significant federal revenue disruption, and two months into a CEO transition.
+
+That is a very different problem than the one a 5-seat agile board solves.
+
+I would welcome fifteen minutes to share what we have built since you last saw Planview — specifically around connecting strategy to execution across mixed delivery environments, and the scenario planning capability that several engineering and consulting firms have used to prepare for exactly the kind of disruption Tetra Tech navigated last year.
+
+Would a brief call this week or next be useful?
+
+[Your name]
+Planview</div>
+      </div>
+      <div class="talk-track">
+        <div class="talk-track-label">Phone Talk Track</div>
+        <div class="talk-section"><div class="talk-section-label">Opening</div><div class="talk-section-body">"Ted, this is [name] from Planview. We worked together a few years ago when Tetra Tech was using AgilePlace. I am reaching back out because the company looks very different from the outside today than it did when you last saw us. Do you have sixty seconds?"</div></div>
+        <div class="talk-section"><div class="talk-section-label">Core Observation</div><div class="talk-section-body">"When we were working together, the context was a small agile team deployment. What I see now is three acquired technology businesses running different delivery methods, a major federal revenue shift that required a rapid portfolio pivot, and a new CEO two months in. That is a completely different problem — and a much larger Planview conversation."</div></div>
+        <div class="talk-section"><div class="talk-section-label">Ask</div><div class="talk-section-body">"I would like to show you what Planview looks like today relative to what you were using in 2022. Would fifteen minutes be worth your time?"</div></div>
+      </div>
+    </div>
+
+    <!-- EMAIL 2 -->
+    <div class="email-wrapper">
+      <div class="email-header">
+        <div class="email-num">2</div>
+        <div class="email-meta">
+          <div class="email-to">Craig Christensen &nbsp;|&nbsp; SVP and CIO <span style="font-size:10px;background:#3B6D11;color:white;padding:2px 6px;border-radius:3px;margin-left:6px">CRM CONTACT</span></div>
+          <div class="email-hook">Entry: M&A integration complexity — three delivery cultures, no unified portfolio layer</div>
+        </div>
+      </div>
+      <div class="email-body">
+        <div class="email-subject">Subject: <span>Three acquisitions in eighteen months — one portfolio view you still do not have</span></div>
+        <div class="email-content">Craig,
+
+You are managing something that very few CIOs have had to tackle: three technology acquisitions in eighteen months, each bringing a distinct delivery culture into a firm that has run engineering programs on a traditional model for decades.
+
+SAGE Group's automation teams, LS Technologies' federal IT practice, and Halvik's agile and DevOps organization all operate on different cadences, tools, and reporting structures. What that means from an enterprise portfolio standpoint is that your executive team currently has no consistent way to see what those teams are working on, how their capacity is being used, and whether their priorities are aligned with the broader portfolio strategy.
+
+Planview was built to solve exactly this structure. It sits above Oracle and Jira rather than replacing them, and provides the unified visibility layer that lets leadership see across every delivery method without disrupting how any team actually works.
+
+Your team used AgilePlace a few years ago. What I am talking about now is a different order of magnitude — an enterprise portfolio platform that connects your digital practice acquisitions, your water and environmental programs, and your federal services work into a single strategic view.
+
+Worth fifteen minutes to walk through what that looks like?
+
+[Your name]
+Planview</div>
+      </div>
+      <div class="talk-track">
+        <div class="talk-track-label">Phone Talk Track</div>
+        <div class="talk-section"><div class="talk-section-label">Opening</div><div class="talk-section-body">"Craig, this is [name] from Planview. Your team used our AgilePlace product for several years — I am reaching back out because I think the conversation that is relevant today is a very different one. Do you have a moment?"</div></div>
+        <div class="talk-section"><div class="talk-section-label">Core Observation</div><div class="talk-section-body">"You have brought in SAGE, LS Technologies, and Halvik in eighteen months. Three different delivery cultures under one roof. What I see from the outside is that there is currently no consistent way for your executive team to see the full portfolio — what is being worked on, where resources are committed, and whether the whole thing is aligned with your strategic objectives."</div></div>
+        <div class="talk-section"><div class="talk-section-label">Planview Position</div><div class="talk-section-body">"Planview sits above Oracle and Jira and provides that unified visibility layer — without requiring any team to change how they work."</div></div>
+        <div class="talk-section"><div class="talk-section-label">Ask</div><div class="talk-section-body">"Would fifteen minutes to walk through what this looks like for a firm in Tetra Tech's situation be useful?"</div></div>
+      </div>
+    </div>
+
+    <!-- EMAIL 3 -->
+    <div class="email-wrapper">
+      <div class="email-header">
+        <div class="email-num">3</div>
+        <div class="email-meta">
+          <div class="email-to">Derik Tran &nbsp;|&nbsp; Director of Project Delivery <span style="font-size:10px;background:#3B6D11;color:white;padding:2px 6px;border-radius:3px;margin-left:6px">CRM CONTACT</span></div>
+          <div class="email-hook">Entry: Project delivery fragmentation across acquired units — AgilePlace history as opener</div>
+        </div>
+      </div>
+      <div class="email-body">
+        <div class="email-subject">Subject: <span>Your delivery portfolio just got three times more complex — here is what that means for tooling</span></div>
+        <div class="email-content">Derik,
+
+I noticed Tetra Tech has your team's contact information in our system from when the company was using Planview's AgilePlace product a few years back. I am reaching out now because the delivery environment you are managing in 2026 is fundamentally different from what it was in 2023.
+
+With Halvik, LS Technologies, and SAGE Group all operating under the Tetra Tech umbrella — running agile, DevOps, and automation delivery alongside traditional engineering programs — the question of how you get a consistent view of project delivery health across all of those methods becomes a real governance challenge.
+
+Most Directors of Project Delivery I speak with in this situation find that they are managing delivery reporting from four or five different sources, none of which tell a consistent story at the portfolio level. That makes escalation decisions, resource reallocation, and executive updates significantly harder than they need to be.
+
+Planview connects all of those delivery streams — agile, waterfall, hybrid — into a single portfolio view. Given your role, I think this is worth a direct conversation.
+
+Would you have fifteen minutes this week?
+
+[Your name]
+Planview</div>
+      </div>
+      <div class="talk-track">
+        <div class="talk-track-label">Phone Talk Track</div>
+        <div class="talk-section"><div class="talk-section-label">Opening</div><div class="talk-section-body">"Derik, this is [name] from Planview. Tetra Tech was a customer of ours for several years on the agile side — I am reaching back out because the delivery environment you are managing today looks significantly more complex than when we were last in touch. Is now a good time?"</div></div>
+        <div class="talk-section"><div class="talk-section-label">Core Observation</div><div class="talk-section-body">"You now have Halvik running agile and DevOps, SAGE running automation delivery, LS Technologies in federal IT, and traditional Tetra Tech engineering programs — all under one roof, all on different tools. Getting a consistent portfolio-level view of delivery health across those methods is a serious challenge."</div></div>
+        <div class="talk-section"><div class="talk-section-label">Ask</div><div class="talk-section-body">"Planview connects all of those delivery streams into a single view. Would fifteen minutes to walk through how that works be useful?"</div></div>
+      </div>
+    </div>
+
+    <!-- EMAIL 4 -->
+    <div class="email-wrapper">
+      <div class="email-header">
+        <div class="email-num">4</div>
+        <div class="email-meta">
+          <div class="email-to">Steven Burdick &nbsp;|&nbsp; EVP and CFO</div>
+          <div class="email-hook">Entry: Backlog credibility and analyst scrutiny — value-based portfolio governance</div>
+        </div>
+      </div>
+      <div class="email-body">
+        <div class="email-subject">Subject: <span>When analysts are watching your backlog quality — how you defend portfolio decisions matters</span></div>
+        <div class="email-content">Steven,
+
+Analysts covering Tetra Tech have made it explicit: new contract wins are not yet fully replacing the federal volume lost through USAID, and future backlog growth depends on factors outside the company's control.
+
+In that environment, every internal capital allocation decision carries additional weight. If the process for prioritizing which programs get funded and resourced relies on executive advocacy rather than an agreed, objective scoring framework — those decisions become harder to defend under scrutiny.
+
+Planview provides exactly that framework. Every initiative in the portfolio is evaluated against the same criteria: strategic alignment, financial return, resource feasibility. Trade-off decisions become structured, repeatable, and auditable. When the board or an analyst asks why a particular program received investment, there is a transparent record that holds up.
+
+Your team used Planview's AgilePlace product for several years. What I am describing now is the portfolio governance layer that sits above that — directly relevant to the credibility challenge Tetra Tech is navigating right now.
+
+Would thirty minutes to explore whether this is relevant be worthwhile?
+
+[Your name]
+Planview</div>
+      </div>
+      <div class="talk-track">
+        <div class="talk-track-label">Phone Talk Track</div>
+        <div class="talk-section"><div class="talk-section-label">Opening</div><div class="talk-section-body">"Steven, this is [name] from Planview. Tetra Tech was a Planview customer for six years — I am reaching out at the CFO level for the first time because the challenge I want to raise is specifically a financial governance one. Do you have sixty seconds?"</div></div>
+        <div class="talk-section"><div class="talk-section-label">Core Observation</div><div class="talk-section-body">"Analysts are watching your backlog quality closely. In that environment, every capital allocation decision you make internally needs to be defensible — not just sound. If prioritization relies on advocacy or manual consolidation, that is a governance vulnerability as well as an efficiency problem."</div></div>
+        <div class="talk-section"><div class="talk-section-label">Ask</div><div class="talk-section-body">"Planview replaces that with a structured scoring framework — every initiative ranked on agreed criteria, every decision auditable. Would thirty minutes to explore whether this is relevant be worthwhile?"</div></div>
+      </div>
+    </div>
+
+    <!-- EMAIL 5 -->
+    <div class="email-wrapper">
+      <div class="email-header">
+        <div class="email-num">5</div>
+        <div class="email-meta">
+          <div class="email-to">Michael Kuhn &nbsp;|&nbsp; Director, Technology Services <span style="font-size:10px;background:#3B6D11;color:white;padding:2px 6px;border-radius:3px;margin-left:6px">CRM CONTACT</span></div>
+          <div class="email-hook">Entry: Tool sprawl across acquisitions — technology services director with a direct pain point</div>
+        </div>
+      </div>
+      <div class="email-body">
+        <div class="email-subject">Subject: <span>Managing technology services across four delivery cultures — a visibility problem worth solving</span></div>
+        <div class="email-content">Michael,
+
+Your role managing Technology Services at Tetra Tech has changed significantly in the past eighteen months. Three technology acquisitions have brought in SAGE Group's automation platform, LS Technologies' federal IT systems, and Halvik's agile and DevOps toolchain — all of which now sit alongside the Oracle-based environment Tetra Tech has run internally for years.
+
+In that situation the question is rarely whether the individual tools work. It is whether anyone has visibility across all of them at the portfolio level — and whether that visibility is good enough to inform resource decisions, surface delivery risks early, and present a coherent picture to leadership.
+
+That is where most firms in Tetra Tech's position find the biggest gap. The tools work for their teams. They do not connect up to give executives what they need to make informed portfolio decisions.
+
+Planview is the layer that bridges that gap. Your team used our AgilePlace product a few years ago — I would welcome a conversation about what the platform looks like today, specifically for a technology services environment managing the kind of diversity Tetra Tech now has.
+
+Would a brief call make sense?
+
+[Your name]
+Planview</div>
+      </div>
+      <div class="talk-track">
+        <div class="talk-track-label">Phone Talk Track</div>
+        <div class="talk-section"><div class="talk-section-label">Opening</div><div class="talk-section-body">"Michael, this is [name] from Planview. Tetra Tech used our product for several years — I am reaching back out because the technology landscape you are managing now looks very different from what it was in 2023. Do you have a moment?"</div></div>
+        <div class="talk-section"><div class="talk-section-label">Core Observation</div><div class="talk-section-body">"Three acquisitions have brought in Oracle, Jira, SAGE's automation tooling, and Halvik's DevOps stack — all running alongside each other. The individual tools probably work fine for their teams. But does anyone have visibility across all of them at the portfolio level? That is usually where the gap is."</div></div>
+        <div class="talk-section"><div class="talk-section-label">Ask</div><div class="talk-section-body">"Planview is the layer that connects those systems and gives leadership a consistent portfolio view. Would fifteen minutes to walk through how that works be useful?"</div></div>
+      </div>
+    </div>
+
+    <!-- EMAIL 6 -->
+    <div class="email-wrapper">
+      <div class="email-header">
+        <div class="email-num">6</div>
+        <div class="email-meta">
+          <div class="email-to">Ted Assur &nbsp;|&nbsp; Second Touch <span style="font-size:10px;background:#3B6D11;color:white;padding:2px 6px;border-radius:3px;margin-left:6px">CRM CONTACT</span></div>
+          <div class="email-hook">Entry: The 2023 churn — direct acknowledgment of what may have driven it</div>
+        </div>
+      </div>
+      <div class="email-body">
+        <div class="email-subject">Subject: <span>What was true about Planview in 2023 is not true today</span></div>
+        <div class="email-content">Ted,
+
+Following up on my earlier note. I want to be direct about something.
+
+When Tetra Tech chose not to renew AgilePlace in 2023, you had a small, isolated deployment — five seats, one team. The value case for a small agile board tool at a $3B engineering firm is genuinely limited, and I understand why that decision made sense at the time.
+
+What has changed is not just the product. It is the business problem.
+
+Tetra Tech in 2026 is managing three acquired technology businesses with different delivery methods, a portfolio that just absorbed a significant federal revenue disruption, and a new CEO establishing his operating model. That is not a problem AgilePlace solves. It is a problem Planview's enterprise portfolio platform solves — connecting strategy to resource allocation to delivery outcomes across the full organization.
+
+I am not asking you to revisit the 2023 decision. I am asking whether the 2026 problem is worth a fifteen-minute conversation.
+
+[Your name]
+Planview</div>
+      </div>
+      <div class="talk-track">
+        <div class="talk-track-label">Phone Talk Track</div>
+        <div class="talk-section"><div class="talk-section-label">Opening</div><div class="talk-section-body">"Ted, [name] from Planview again. I want to be straightforward about why I am calling back. I am not trying to re-sell you what you turned down in 2023. The product and the business problem are both different now. Do you have sixty seconds?"</div></div>
+        <div class="talk-section"><div class="talk-section-label">Core Observation</div><div class="talk-section-body">"A five-seat AgilePlace deployment at a firm the size of Tetra Tech was always a narrow fit. I understand why it did not renew. But the company you are working at today — three acquired tech firms, a major portfolio pivot underway, a new CEO — has a fundamentally different need. And that is a much stronger Planview conversation."</div></div>
+        <div class="talk-section"><div class="talk-section-label">Ask</div><div class="talk-section-body">"Would fifteen minutes to walk through what Planview looks like for Tetra Tech in 2026 be worth your time?"</div></div>
+      </div>
+    </div>
+
+    <!-- EMAIL 7 -->
+    <div class="email-wrapper">
+      <div class="email-header">
+        <div class="email-num">7</div>
+        <div class="email-meta">
+          <div class="email-to">Melissa Studer &nbsp;|&nbsp; Director, Enterprise Operations <span style="font-size:10px;background:#3B6D11;color:white;padding:2px 6px;border-radius:3px;margin-left:6px">CRM CONTACT</span></div>
+          <div class="email-hook">Entry: Enterprise Operations visibility — resource allocation across a complex portfolio</div>
+        </div>
+      </div>
+      <div class="email-body">
+        <div class="email-subject">Subject: <span>Enterprise Operations at Tetra Tech — the visibility challenge that does not get easier with scale</span></div>
+        <div class="email-content">Melissa,
+
+Tetra Tech's Enterprise Operations function sits at a challenging intersection right now. You are coordinating delivery across an organization that has just added three technology businesses with different operating models, while the company is actively pivoting its portfolio mix from federal toward commercial and international work.
+
+The resource allocation decisions that Enterprise Operations needs to make in that environment — which teams to deploy on which programs, where capacity exists, which initiatives to accelerate — are exactly the decisions that require real-time portfolio visibility. Without it, those calls get made from static reports that are always slightly out of date.
+
+Planview provides that visibility in real time. It connects demand against capacity across every delivery method in the portfolio, and surfaces the resource constraints and conflicts that would otherwise only show up as missed commitments.
+
+Your team is listed in our system from when Tetra Tech was using our AgilePlace product. I would welcome a brief call to talk about what has changed in the platform since then and whether it is relevant to what you are managing today.
+
+Would fifteen minutes work?
+
+[Your name]
+Planview</div>
+      </div>
+      <div class="talk-track">
+        <div class="talk-track-label">Phone Talk Track</div>
+        <div class="talk-section"><div class="talk-section-label">Opening</div><div class="talk-section-body">"Melissa, this is [name] from Planview. Your name is in our system from when Tetra Tech was a customer. I am reaching out specifically around the Enterprise Operations challenge because the environment you are working in today is significantly more complex than it was a few years ago. Is now a good time?"</div></div>
+        <div class="talk-section"><div class="talk-section-label">Core Observation</div><div class="talk-section-body">"Three new technology businesses, a major portfolio pivot, and a new CEO — Enterprise Operations is at the center of all of that. The resource allocation decisions you need to make require real-time visibility that static reports cannot provide."</div></div>
+        <div class="talk-section"><div class="talk-section-label">Ask</div><div class="talk-section-body">"Planview provides that visibility. Would fifteen minutes to walk through how it applies to your specific situation be useful?"</div></div>
+      </div>
+    </div>
+
+    <!-- EMAIL 8 -->
+    <div class="email-wrapper">
+      <div class="email-header">
+        <div class="email-num">8</div>
+        <div class="email-meta">
+          <div class="email-to">Roger Argus &nbsp;|&nbsp; CEO (new, Feb 2026)</div>
+          <div class="email-hook">Entry: New CEO operating model — portfolio visibility as a leadership tool</div>
+        </div>
+      </div>
+      <div class="email-body">
+        <div class="email-subject">Subject: <span>A platform question worth asking in your first 90 days</span></div>
+        <div class="email-content">Roger,
+
+Congratulations on your appointment as CEO. You are stepping into leadership of a company that is managing one of the most complex portfolio environments in its history — three technology acquisitions to integrate, a major federal revenue base to replace with commercial and international work, and a $500M digital practice to build by 2030.
+
+Most incoming CEOs I speak with ask a version of the same question within their first 90 days: do we have the visibility we need to make the right trade-off decisions across the portfolio — and are those decisions being made on data or on advocacy?
+
+Tetra Tech has a relationship with Planview going back to 2017. The platform has evolved significantly since your team last used it. What I would like to offer is a short, direct conversation about whether Planview's enterprise portfolio capability — scenario modeling, value-based prioritization, and unified visibility across agile and traditional delivery — is the right infrastructure for the operating model you are building.
+
+No commitment, no pitch deck. Just a conversation about whether the platform matches the problem.
+
+Would twenty minutes work?
+
+[Your name]
+Planview</div>
+      </div>
+      <div class="talk-track">
+        <div class="talk-track-label">Phone Talk Track</div>
+        <div class="talk-section"><div class="talk-section-label">Opening</div><div class="talk-section-body">"Roger, this is [name] from Planview. Tetra Tech has been a Planview customer going back to 2017. I am reaching out to you directly as you establish your operating model in the first 90 days. I have one specific question for you. Do you have sixty seconds?"</div></div>
+        <div class="talk-section"><div class="talk-section-label">Core Observation</div><div class="talk-section-body">"Most CEOs I speak with in the first 90 days ask the same question: do we have the visibility to make the right portfolio trade-offs — and are those decisions being made on data or on whoever argued most persuasively in the last leadership meeting? At Tetra Tech's current scale and complexity, that is a real risk."</div></div>
+        <div class="talk-section"><div class="talk-section-label">Ask</div><div class="talk-section-body">"I would like twenty minutes to walk through what Planview's enterprise portfolio platform looks like today and whether it is relevant to the operating model you are building. No commitment, no pressure."</div></div>
+      </div>
+    </div>
+
+    <!-- EMAIL 9 -->
+    <div class="email-wrapper">
+      <div class="email-header">
+        <div class="email-num">9</div>
+        <div class="email-meta">
+          <div class="email-to">Craig Christensen &nbsp;|&nbsp; Second Touch <span style="font-size:10px;background:#3B6D11;color:white;padding:2px 6px;border-radius:3px;margin-left:6px">CRM CONTACT</span></div>
+          <div class="email-hook">Entry: Halvik integration — agile teams without a portfolio layer above them</div>
+        </div>
+      </div>
+      <div class="email-body">
+        <div class="email-subject">Subject: <span>600 agile practitioners joined Tetra Tech in January — what sits above them at the portfolio level?</span></div>
+        <div class="email-content">Craig,
+
+The Halvik acquisition closed in January. Six hundred professionals delivering agile IT programs for NASA, the Department of Transportation, and defense agencies are now part of Tetra Tech's Government Services Group.
+
+That creates a specific portfolio governance challenge. Halvik's teams operate on agile sprint cadences, DevOps pipelines, and continuous delivery timelines. Those rhythms do not surface cleanly in Oracle financial reporting or standard program reviews. But leadership still needs to know what those teams are working on, how their capacity is allocated, and whether their priorities are aligned with the broader portfolio.
+
+The risk I see is that forcing Halvik's teams into traditional reporting models destroys the agility that made the acquisition valuable. But leaving them disconnected from the enterprise portfolio means leadership is flying blind on a significant portion of the government services portfolio.
+
+Planview solves that specifically. Agile teams keep working in their native tools. Planview aggregates the portfolio-level signal — capacity, outcomes, strategic alignment — and surfaces it in a consistent view for leadership. You get the visibility without sacrificing the delivery culture.
+
+I would welcome fifteen minutes to walk through how this works for a firm in exactly Tetra Tech's situation.
+
+[Your name]
+Planview</div>
+      </div>
+      <div class="talk-track">
+        <div class="talk-track-label">Phone Talk Track</div>
+        <div class="talk-section"><div class="talk-section-label">Opening</div><div class="talk-section-body">"Craig, [name] again from Planview. I want to come at the integration question from the Halvik angle specifically. Is now okay?"</div></div>
+        <div class="talk-section"><div class="talk-section-label">Core Observation</div><div class="talk-section-body">"Halvik runs on agile and DevOps. That is a great capability. But it creates a portfolio governance problem: how do you make Halvik's delivery work visible to executive leadership without forcing their teams into a reporting model that breaks what makes them effective?"</div></div>
+        <div class="talk-section"><div class="talk-section-label">Planview Position</div><div class="talk-section-body">"Planview handles this natively. Agile teams work in their own tools. Planview aggregates the portfolio signal above them — capacity, priorities, outcomes — and presents it in a consistent executive view. No one changes how they work."</div></div>
+        <div class="talk-section"><div class="talk-section-label">Ask</div><div class="talk-section-body">"Would fifteen minutes to walk through a live example of this be useful?"</div></div>
+      </div>
+    </div>
+
+    <!-- EMAIL 10 -->
+    <div class="email-wrapper">
+      <div class="email-header">
+        <div class="email-num">10</div>
+        <div class="email-meta">
+          <div class="email-to">Leslie Shoemaker, PhD &nbsp;|&nbsp; Chief Innovation and Sustainability Officer</div>
+          <div class="email-hook">Entry: $500M digital practice target — outcome-connected portfolio tracking for transformation</div>
+        </div>
+      </div>
+      <div class="email-body">
+        <div class="email-subject">Subject: <span>Tracking whether the digital practice portfolio is actually on course for $500M</span></div>
+        <div class="email-content">Leslie,
+
+Tetra Tech has set a public target of building a $500M annual revenue digital systems practice by 2030. That is a multi-year transformation portfolio spanning acquisitions, organic investments, talent programs, and market development efforts.
+
+The question that almost every Chief Innovation Officer I work with cannot answer with confidence is: at any given point in time, which of the active transformation initiatives are on track to contribute to that target — and which ones are consuming resources without generating the strategic return that was projected for them?
+
+Most transformation portfolios I review are tracked through milestone dashboards and status reports. Those tell you what happened. They do not tell you whether the portfolio as a whole is structured to actually achieve the strategic objective it was designed for.
+
+Planview connects each initiative to the specific outcomes it is meant to deliver — the $500M target in this case — and tracks portfolio progress against the actual goal rather than just against project plans. When something is not contributing, it surfaces early enough to be redirected.
+
+Your team has used Planview before. The platform has evolved significantly since then, and I think the innovation portfolio challenge you are managing is one of the clearest use cases I have seen.
+
+Would a short conversation about how other firms have structured outcome-connected transformation portfolios be useful?
+
+[Your name]
+Planview</div>
+      </div>
+      <div class="talk-track">
+        <div class="talk-track-label">Phone Talk Track</div>
+        <div class="talk-section"><div class="talk-section-label">Opening</div><div class="talk-section-body">"Leslie, this is [name] from Planview. Tetra Tech used our platform for several years — I am reaching out to you specifically around the digital practice transformation target. Do you have sixty seconds?"</div></div>
+        <div class="talk-section"><div class="talk-section-label">Core Observation</div><div class="talk-section-body">"Tetra Tech has publicly committed to a $500M digital practice by 2030. That is a portfolio of acquisitions, investments, and talent programs that all need to add up to that number. The question I would ask is: how are you tracking whether the portfolio as it exists today is actually structured to achieve that outcome? Most firms I see are tracking activities, not outcomes."</div></div>
+        <div class="talk-section"><div class="talk-section-label">Planview Position</div><div class="talk-section-body">"Planview connects every initiative to the strategic outcome it is meant to deliver and tracks progress in real time against the actual target — not just project milestones. That is a fundamentally different capability from status reporting."</div></div>
+        <div class="talk-section"><div class="talk-section-label">Ask</div><div class="talk-section-body">"Would thirty minutes to walk through how similar transformation portfolios have been structured be worth your time?"</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<p style="font-size:11px;color:#aaa;text-align:center;padding:16px 0">Prepared by Planview &nbsp;|&nbsp; Account Owner: Kush Parikh &nbsp;|&nbsp; Tetra Tech (NASDAQ: TTEK) &nbsp;|&nbsp; April 2026 &nbsp;|&nbsp; Data sourced from Salesforce, public filings, and live market research</p>
+
+</div>
 <script>
-  document.querySelectorAll('.email-wrapper').forEach((wrapper, idx) => {
-    const num = idx + 1;
-    const header = wrapper.querySelector('.email-header');
-    const track = wrapper.querySelector('.talk-track');
-
-    const tabContainer = document.createElement('div');
-    tabContainer.className = 'email-tabs';
-
-    const emailTab = document.createElement('div');
-    emailTab.className = 'email-tab active';
-    emailTab.textContent = 'Email';
-
-    const talkTab = document.createElement('div');
-    talkTab.className = 'email-tab';
-    talkTab.textContent = 'Talk Track';
-
-    tabContainer.appendChild(emailTab);
-    tabContainer.appendChild(talkTab);
-    header.appendChild(tabContainer);
-
-    const emailBody = wrapper.querySelector('.email-body');
-
-    emailTab.addEventListener('click', () => {
-      emailBody.style.display = 'block';
-      track.style.display = 'none';
-      emailTab.classList.add('active');
-      talkTab.classList.remove('active');
-    });
-
-    talkTab.addEventListener('click', () => {
-      emailBody.style.display = 'none';
-      track.style.display = 'block';
-      talkTab.classList.add('active');
-      emailTab.classList.remove('active');
-    });
-  });
+document.querySelectorAll('.email-wrapper').forEach(wrapper=>{
+  const header=wrapper.querySelector('.email-header');
+  const track=wrapper.querySelector('.talk-track');
+  const emailBody=wrapper.querySelector('.email-body');
+  const tabs=document.createElement('div');
+  tabs.className='email-tabs';
+  const et=document.createElement('button');et.className='email-tab active';et.textContent='Email';
+  const tt=document.createElement('button');tt.className='email-tab';tt.textContent='Talk Track';
+  tabs.appendChild(et);tabs.appendChild(tt);header.appendChild(tabs);
+  et.addEventListener('click',()=>{emailBody.style.display='block';track.style.display='none';et.classList.add('active');tt.classList.remove('active')});
+  tt.addEventListener('click',()=>{emailBody.style.display='none';track.style.display='block';tt.classList.add('active');et.classList.remove('active')});
+});
 </script>
 </body>
 </html>
