@@ -140,9 +140,50 @@ body{font-family:Arial,sans-serif;font-size:14px;color:var(--black);background:#
 .section-sub{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#888;border-bottom:1px solid var(--border);padding-bottom:6px;margin:18px 0 14px}
 
 @media(max-width:600px){.card-grid,.leader-grid,.risk-grid,.hyp-pillars{grid-template-columns:1fr}.section-body{padding:16px}.cover{padding:24px}}
+
+/* STICKY NAV */
+.sticky-nav{position:sticky;top:0;z-index:100;background:white;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:24px}
+.sticky-nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.sticky-nav-inner::-webkit-scrollbar{display:none}
+.nav-item{display:flex;align-items:center;gap:8px;padding:13px 18px;font-size:13px;font-weight:700;color:var(--gray);cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;transition:all .15s;text-decoration:none;flex-shrink:0}
+.nav-item:hover{color:var(--black);border-bottom-color:var(--border)}
+.nav-item.active{color:var(--red);border-bottom-color:var(--red)}
+.nav-dot{width:20px;height:20px;background:var(--light);border:1px solid var(--border);border-radius:50%;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;color:var(--gray);flex-shrink:0;transition:all .15s}
+.nav-item.active .nav-dot{background:var(--red);border-color:var(--red);color:white}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0}
+.nav-news-btn{margin-left:auto;display:flex;align-items:center;gap:6px;padding:7px 14px;background:var(--red);color:white;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;flex-shrink:0;white-space:nowrap}
+.nav-news-btn:hover{background:var(--dark-red)}
+html{scroll-behavior:smooth}
 </style>
 </head>
 <body>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav" id="sticky-nav">
+  <div class="sticky-nav-inner">
+    <a class="nav-item active" href="#s1" onclick="setActive(this)">
+      <span class="nav-dot">1</span>Strategic Initiatives
+    </a>
+    <div class="nav-divider"></div>
+    <a class="nav-item" href="#s2" onclick="setActive(this)">
+      <span class="nav-dot">2</span>Stakeholders
+    </a>
+    <div class="nav-divider"></div>
+    <a class="nav-item" href="#s3" onclick="setActive(this)">
+      <span class="nav-dot">3</span>CRM History &amp; Tech Stack
+    </a>
+    <div class="nav-divider"></div>
+    <a class="nav-item" href="#s4" onclick="setActive(this)">
+      <span class="nav-dot">4</span>Value Hypothesis
+    </a>
+    <div class="nav-divider"></div>
+    <a class="nav-item" href="#s5" onclick="setActive(this)">
+      <span class="nav-dot">5</span>Outreach Playbook
+    </a>
+    <a class="nav-news-btn" href="news.html">&#9642; Live Feed</a>
+  </div>
+</nav>
+
 <div class="page">
 
 <!-- COVER -->
@@ -174,7 +215,7 @@ body{font-family:Arial,sans-serif;font-size:14px;color:var(--black);background:#
 </div>
 
 <!-- SECTION 1 -->
-<div class="section">
+<div class="section" id="s1">
   <div class="section-head"><div class="section-num">1</div><div class="section-title">Strategic Initiatives, Leadership Changes &amp; Business Risks</div></div>
   <div class="section-body">
     <p style="font-size:13px;color:#515151;margin-bottom:18px;line-height:1.6">Tetra Tech is a $5B global consulting and engineering firm specializing in water, environment, and sustainable infrastructure. As of February 2026 there is a new CEO, a compressed backlog following a major federal revenue shock, and an aggressive pivot toward digital services and commercial markets — all of which create fresh urgency around portfolio prioritization, resource deployment, and enterprise visibility.</p>
@@ -261,7 +302,7 @@ body{font-family:Arial,sans-serif;font-size:14px;color:var(--black);background:#
 </div>
 
 <!-- SECTION 2 -->
-<div class="section">
+<div class="section" id="s2">
   <div class="section-head"><div class="section-num">2</div><div class="section-title">Key Stakeholders — CRM Contacts, Decision-Makers &amp; Champions</div></div>
   <div class="section-body">
     <p style="font-size:13px;color:#515151;margin-bottom:6px;line-height:1.6">Salesforce shows 30+ contacts across two Tetra Tech account records. Cards marked <span style="background:#3B6D11;color:white;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;">IN CRM</span> are verified contacts with emails already in your system.</p>
@@ -361,7 +402,7 @@ body{font-family:Arial,sans-serif;font-size:14px;color:var(--black);background:#
 </div>
 
 <!-- SECTION 3 -->
-<div class="section">
+<div class="section" id="s3">
   <div class="section-head"><div class="section-num">3</div><div class="section-title">Salesforce Relationship History &amp; Current Tech Stack</div></div>
   <div class="section-body">
 
@@ -402,7 +443,7 @@ body{font-family:Arial,sans-serif;font-size:14px;color:var(--black);background:#
 </div>
 
 <!-- SECTION 4 -->
-<div class="section">
+<div class="section" id="s4">
   <div class="section-head"><div class="section-num">4</div><div class="section-title">Planview Value Hypothesis — Winback + Expansion</div></div>
   <div class="section-body">
     <div class="hypothesis-box">
@@ -436,7 +477,7 @@ body{font-family:Arial,sans-serif;font-size:14px;color:var(--black);background:#
 </div>
 
 <!-- SECTION 5 -->
-<div class="section">
+<div class="section" id="s5">
   <div class="section-head"><div class="section-num">5</div><div class="section-title">Outreach Playbook — 10 Personalized Emails &amp; Talk Tracks</div></div>
   <div class="section-body">
     <p style="font-size:13px;color:#515151;margin-bottom:8px;line-height:1.6">Every message below is built on the winback context from Salesforce. No two messages share the same structure, hook, or Planview differentiator. Click the tab to toggle between the email and phone talk track. All contacts with emails marked are already in your CRM.</p>
@@ -798,6 +839,7 @@ Planview</div>
 
 </div>
 <script>
+// Email tab toggle
 document.querySelectorAll('.email-wrapper').forEach(wrapper=>{
   const header=wrapper.querySelector('.email-header');
   const track=wrapper.querySelector('.talk-track');
@@ -810,6 +852,32 @@ document.querySelectorAll('.email-wrapper').forEach(wrapper=>{
   et.addEventListener('click',()=>{emailBody.style.display='block';track.style.display='none';et.classList.add('active');tt.classList.remove('active')});
   tt.addEventListener('click',()=>{emailBody.style.display='none';track.style.display='block';tt.classList.add('active');et.classList.remove('active')});
 });
+
+// Nav active state on click
+function setActive(el){
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Scroll spy — highlight nav item matching visible section
+const sections = ['s1','s2','s3','s4','s5'];
+const navItems = {};
+sections.forEach(id=>{
+  const link = document.querySelector(`.nav-item[href="#${id}"]`);
+  if(link) navItems[id] = link;
+});
+
+const navHeight = 52;
+function onScroll(){
+  let current = sections[0];
+  sections.forEach(id=>{
+    const el = document.getElementById(id);
+    if(el && el.getBoundingClientRect().top <= navHeight + 20) current = id;
+  });
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  if(navItems[current]) navItems[current].classList.add('active');
+}
+window.addEventListener('scroll', onScroll, {passive:true});
 </script>
 </body>
 </html>
