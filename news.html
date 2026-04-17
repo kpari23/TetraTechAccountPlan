@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tetra Tech Live Intelligence Feed – Planview</title>
+<style>
+  :root {
+    --red: #E2251B;
+    --dark-red: #B60001;
+    --black: #1A1A1A;
+    --gray: #515151;
+    --light: #F7F8FA;
+    --border: #E2E6EA;
+    --steel: #6A94AA;
+    --ice: #D9E7ED;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; font-size: 14px; color: var(--black); background: #F0F2F5; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  /* COVER */
+  .cover { background: var(--black); color: white; border-radius: 10px; padding: 36px 48px; margin-bottom: 28px; position: relative; overflow: hidden; }
+  .cover-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #aaa; margin-bottom: 10px; }
+  .cover-title { font-size: 28px; font-weight: 900; color: white; margin-bottom: 6px; }
+  .cover-title span { color: var(--red); }
+  .cover-sub { font-size: 14px; color: #bbb; margin-bottom: 0; }
+  .cover-nav { margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .cover-nav span { font-size: 12px; color: #888; }
+  .back-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 700; border: 1px solid rgba(255,255,255,0.15); }
+  .back-btn:hover { background: rgba(255,255,255,0.18); }
+  .live-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; margin-right: 4px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* FILTERS */
+  .filter-bar { background: white; border-radius: 10px; border: 1px solid var(--border); padding: 16px 22px; margin-bottom: 22px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .filter-label { font-size: 12px; font-weight: 700; color: var(--gray); margin-right: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .filter-btn { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); background: var(--light); font-size: 12px; font-weight: 700; cursor: pointer; color: var(--gray); transition: all 0.15s; }
+  .filter-btn.active { background: var(--black); color: white; border-color: var(--black); }
+  .filter-btn:hover:not(.active) { border-color: #999; color: var(--black); }
+  .refresh-btn { margin-left: auto; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--red); background: white; font-size: 12px; font-weight: 700; color: var(--red); cursor: pointer; }
+  .refresh-btn:hover { background: var(--red); color: white; }
+
+  /* FEED GRID */
+  .feed-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+
+  /* NEWS CARD */
+  .news-card { background: white; border-radius: 10px; border: 1px solid var(--border); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; transition: box-shadow 0.15s; }
+  .news-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .news-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .news-source { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 3px 8px; border-radius: 3px; }
+  .src-financial { background: #EAF3DE; color: #3B6D11; }
+  .src-contract { background: #D9E7ED; color: #185FA5; }
+  .src-leadership { background: #EEEDFE; color: #3C3489; }
+  .src-industry { background: #FAEEDA; color: #854F0B; }
+  .src-risk { background: #FCEBEB; color: #A32D2D; }
+  .src-general { background: #F1EFE8; color: #444; }
+  .news-date { font-size: 11px; color: #aaa; }
+  .news-title { font-size: 14px; font-weight: 700; color: var(--black); line-height: 1.45; }
+  .news-summary { font-size: 12.5px; color: var(--gray); line-height: 1.6; }
+  .news-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: var(--red); text-decoration: none; margin-top: auto; }
+  .news-link:hover { text-decoration: underline; }
+
+  /* LOADING / EMPTY */
+  .feed-status { background: white; border-radius: 10px; border: 1px solid var(--border); padding: 48px 28px; text-align: center; }
+  .feed-status .icon { font-size: 36px; margin-bottom: 12px; }
+  .feed-status h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .feed-status p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+  .spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--red); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .last-updated { font-size: 11px; color: #aaa; text-align: right; margin-top: 16px; }
+
+  /* TOPICS SIDEBAR */
+  .layout { display: grid; grid-template-columns: 1fr 280px; gap: 20px; align-items: start; }
+  .sidebar { display: flex; flex-direction: column; gap: 16px; }
+  .sidebar-card { background: white; border-radius: 10px; border: 1px solid var(--border); padding: 18px 20px; }
+  .sidebar-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--gray); margin-bottom: 12px; }
+  .topic-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
+  .topic-item:last-child { border-bottom: none; }
+  .topic-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .topic-name { font-size: 13px; color: var(--black); }
+  .topic-count { margin-left: auto; font-size: 11px; font-weight: 700; color: white; background: var(--gray); padding: 2px 7px; border-radius: 10px; }
+  .watchword-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .watchword { background: var(--light); border: 1px solid var(--border); border-radius: 4px; font-size: 11px; padding: 4px 8px; color: var(--gray); }
+
+  @media (max-width: 800px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { order: -1; }
+    .feed-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-eyebrow">Planview Account Intelligence &nbsp;|&nbsp; Tetra Tech (NASDAQ: TTEK)</div>
+    <div class="cover-title">Live Intelligence <span>Feed</span></div>
+    <div class="cover-sub"><span class="live-dot"></span> Auto-refreshing from Google News, SEC filings, and industry sources &nbsp;|&nbsp; Click any headline to read the full article</div>
+    <div class="cover-nav">
+      <span>You are viewing: <strong style="color:white;">Live News Feed</strong></span>
+      <a href="index.html" class="back-btn">&larr; Back to Account Plan</a>
+    </div>
+  </div>
+
+  <div class="layout">
+    <!-- MAIN FEED -->
+    <div>
+      <!-- FILTER BAR -->
+      <div class="filter-bar">
+        <span class="filter-label">Filter:</span>
+        <button class="filter-btn active" onclick="filterFeed('all', this)">All</button>
+        <button class="filter-btn" onclick="filterFeed('financial', this)">Financial</button>
+        <button class="filter-btn" onclick="filterFeed('contract', this)">Contracts</button>
+        <button class="filter-btn" onclick="filterFeed('leadership', this)">Leadership</button>
+        <button class="filter-btn" onclick="filterFeed('industry', this)">Industry</button>
+        <button class="filter-btn" onclick="filterFeed('risk', this)">Risk</button>
+        <button class="refresh-btn" onclick="loadAllFeeds()">&#8635; Refresh</button>
+      </div>
+
+      <!-- FEED CONTAINER -->
+      <div id="feed-container">
+        <div class="feed-status">
+          <div class="spinner"></div>
+          <h3>Loading latest Tetra Tech intelligence...</h3>
+          <p>Fetching headlines from financial news, government contract databases, and industry publications.</p>
+        </div>
+      </div>
+      <div class="last-updated" id="last-updated"></div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-title">Topic Tracker</div>
+        <div class="topic-item" onclick="filterFeed('financial', null)">
+          <div class="topic-dot" style="background:#3B6D11;"></div>
+          <span class="topic-name">Earnings &amp; Finance</span>
+          <span class="topic-count" id="count-financial">0</span>
+        </div>
+        <div class="topic-item" onclick="filterFeed('contract', null)">
+          <div class="topic-dot" style="background:#185FA5;"></div>
+          <span class="topic-name">Contracts &amp; Awards</span>
+          <span class="topic-count" id="count-contract">0</span>
+        </div>
+        <div class="topic-item" onclick="filterFeed('leadership', null)">
+          <div class="topic-dot" style="background:#3C3489;"></div>
+          <span class="topic-name">Leadership</span>
+          <span class="topic-count" id="count-leadership">0</span>
+        </div>
+        <div class="topic-item" onclick="filterFeed('industry', null)">
+          <div class="topic-dot" style="background:#854F0B;"></div>
+          <span class="topic-name">Industry &amp; Market</span>
+          <span class="topic-count" id="count-industry">0</span>
+        </div>
+        <div class="topic-item" onclick="filterFeed('risk', null)">
+          <div class="topic-dot" style="background:#A32D2D;"></div>
+          <span class="topic-name">Risk &amp; Policy</span>
+          <span class="topic-count" id="count-risk">0</span>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title">Key Watchwords</div>
+        <div class="watchword-list">
+          <span class="watchword">Roger Argus</span>
+          <span class="watchword">USAID</span>
+          <span class="watchword">DOGE</span>
+          <span class="watchword">federal contracts</span>
+          <span class="watchword">digital practice</span>
+          <span class="watchword">SAGE Group</span>
+          <span class="watchword">Halvik</span>
+          <span class="watchword">water infrastructure</span>
+          <span class="watchword">backlog</span>
+          <span class="watchword">Army Corps</span>
+          <span class="watchword">TTEK</span>
+          <span class="watchword">sustainability</span>
+          <span class="watchword">earnings</span>
+          <span class="watchword">acquisition</span>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title">Quick Links</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a href="https://investor.tetratech.com" target="_blank" style="font-size:13px;color:var(--red);text-decoration:none;display:flex;align-items:center;gap:6px;">&#8599; Investor Relations</a>
+          <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=TTEK&type=10-K&dateb=&owner=include&count=5" target="_blank" style="font-size:13px;color:var(--red);text-decoration:none;display:flex;align-items:center;gap:6px;">&#8599; SEC Filings (TTEK)</a>
+          <a href="https://finance.yahoo.com/quote/TTEK/news/" target="_blank" style="font-size:13px;color:var(--red);text-decoration:none;display:flex;align-items:center;gap:6px;">&#8599; Yahoo Finance News</a>
+          <a href="https://www.tetratech.com/newsroom/" target="_blank" style="font-size:13px;color:var(--red);text-decoration:none;display:flex;align-items:center;gap:6px;">&#8599; Tetra Tech Newsroom</a>
+          <a href="https://www.linkedin.com/company/tetra-tech/" target="_blank" style="font-size:13px;color:var(--red);text-decoration:none;display:flex;align-items:center;gap:6px;">&#8599; LinkedIn Page</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const RSS_PROXY = 'https://api.rss2json.com/v1/api.json?rss_url=';
+
+  const FEEDS = [
+    {
+      url: 'https://news.google.com/rss/search?q=Tetra+Tech+TTEK&hl=en-US&gl=US&ceid=US:en',
+      label: 'Google News'
+    },
+    {
+      url: 'https://news.google.com/rss/search?q=Tetra+Tech+earnings+OR+contract+OR+acquisition&hl=en-US&gl=US&ceid=US:en',
+      label: 'Google News - Financial'
+    },
+    {
+      url: 'https://news.google.com/rss/search?q=%22Tetra+Tech%22+federal+OR+USAID+OR+DOGE+OR+government&hl=en-US&gl=US&ceid=US:en',
+      label: 'Google News - Federal'
+    },
+    {
+      url: 'https://news.google.com/rss/search?q=%22Tetra+Tech%22+water+OR+infrastructure+OR+digital+OR+sustainability&hl=en-US&gl=US&ceid=US:en',
+      label: 'Google News - Industry'
+    }
+  ];
+
+  let allArticles = [];
+  let activeFilter = 'all';
+
+  function categorize(item) {
+    const text = (item.title + ' ' + (item.description || '')).toLowerCase();
+    if (/earnings|revenue|profit|quarterly|fiscal|financial|stock|analyst|guidance|backlog|ebitda|eps|investor/.test(text)) return 'financial';
+    if (/contract|award|corps|afcec|usace|project|bid|procurement|federal|government|agency/.test(text)) return 'contract';
+    if (/ceo|president|appoint|leadership|executive|hire|resign|director|officer|argus|batrack|weiss/.test(text)) return 'leadership';
+    if (/water|infrastructure|environment|sustainability|digital|automation|sage|halvik|acquisition|merger/.test(text)) return 'industry';
+    if (/risk|doge|usaid|regulation|policy|tariff|threat|concern|warning|cut|cancel|terminate/.test(text)) return 'risk';
+    return 'general';
+  }
+
+  function sourceLabel(cat) {
+    const map = {
+      financial: ['Financial', 'src-financial'],
+      contract: ['Contract Award', 'src-contract'],
+      leadership: ['Leadership', 'src-leadership'],
+      industry: ['Industry', 'src-industry'],
+      risk: ['Risk / Policy', 'src-risk'],
+      general: ['General', 'src-general']
+    };
+    return map[cat] || map.general;
+  }
+
+  function timeAgo(dateStr) {
+    const d = new Date(dateStr);
+    if (isNaN(d)) return '';
+    const diff = Math.floor((Date.now() - d) / 1000);
+    if (diff < 60) return 'just now';
+    if (diff < 3600) return Math.floor(diff / 60) + 'm ago';
+    if (diff < 86400) return Math.floor(diff / 3600) + 'h ago';
+    if (diff < 604800) return Math.floor(diff / 86400) + 'd ago';
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  }
+
+  function stripHtml(html) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html || '';
+    return tmp.textContent.slice(0, 160).trim();
+  }
+
+  function dedup(articles) {
+    const seen = new Set();
+    return articles.filter(a => {
+      const key = a.title.toLowerCase().replace(/\s+/g, ' ').slice(0, 60);
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
+  function renderFeed(filter) {
+    activeFilter = filter;
+    const container = document.getElementById('feed-container');
+    const filtered = filter === 'all' ? allArticles : allArticles.filter(a => a.category === filter);
+
+    if (filtered.length === 0) {
+      container.innerHTML = `
+        <div class="feed-status">
+          <div class="icon">&#128240;</div>
+          <h3>No articles found for this filter</h3>
+          <p>Try selecting a different category or click Refresh to reload the feed.</p>
+        </div>`;
+      return;
+    }
+
+    container.innerHTML = `<div class="feed-grid">${filtered.map(a => {
+      const [label, cls] = sourceLabel(a.category);
+      return `
+        <div class="news-card" data-category="${a.category}">
+          <div class="news-card-top">
+            <span class="news-source ${cls}">${label}</span>
+            <span class="news-date">${timeAgo(a.pubDate)}</span>
+          </div>
+          <div class="news-title">${a.title}</div>
+          ${a.summary ? `<div class="news-summary">${a.summary}</div>` : ''}
+          <a class="news-link" href="${a.link}" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </div>`;
+    }).join('')}</div>`;
+  }
+
+  function updateCounts() {
+    const cats = ['financial','contract','leadership','industry','risk'];
+    cats.forEach(cat => {
+      const count = allArticles.filter(a => a.category === cat).length;
+      const el = document.getElementById('count-' + cat);
+      if (el) el.textContent = count;
+    });
+  }
+
+  function filterFeed(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    renderFeed(cat);
+  }
+
+  async function fetchFeed(feedUrl) {
+    const url = RSS_PROXY + encodeURIComponent(feedUrl) + '&count=20';
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data.status !== 'ok' || !data.items) return [];
+      return data.items.map(item => ({
+        title: item.title || '',
+        link: item.link || item.guid || '#',
+        pubDate: item.pubDate || '',
+        summary: stripHtml(item.description),
+        category: categorize(item)
+      }));
+    } catch (e) {
+      return [];
+    }
+  }
+
+  async function loadAllFeeds() {
+    document.getElementById('feed-container').innerHTML = `
+      <div class="feed-status">
+        <div class="spinner"></div>
+        <h3>Refreshing intelligence feed...</h3>
+        <p>Pulling the latest Tetra Tech headlines from multiple sources.</p>
+      </div>`;
+
+    const results = await Promise.all(FEEDS.map(f => fetchFeed(f.url)));
+    const merged = results.flat();
+
+    // Sort by date descending
+    merged.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+    allArticles = dedup(merged);
+
+    updateCounts();
+
+    if (allArticles.length === 0) {
+      document.getElementById('feed-container').innerHTML = `
+        <div class="feed-status">
+          <div class="icon">&#9888;&#65039;</div>
+          <h3>Could not load live feed</h3>
+          <p>This can happen due to network restrictions. Use the quick links in the sidebar to access Tetra Tech news directly.</p>
+        </div>`;
+    } else {
+      renderFeed(activeFilter);
+      document.getElementById('last-updated').textContent =
+        'Last updated: ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) +
+        ' — ' + allArticles.length + ' articles loaded';
+    }
+  }
+
+  // Load on page open, then auto-refresh every 10 minutes
+  loadAllFeeds();
+  setInterval(loadAllFeeds, 600000);
+</script>
+</body>
+</html>
